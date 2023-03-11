@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load template_tags %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--== Google Fonts ==-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700,800" rel="stylesheet">
+
+    <!--== Bootstrap CSS ==-->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+    <!--== Headroom CSS ==-->
+    <link href="{% static 'css/headroom.css' %}" rel="stylesheet" />
+    <!--== Animate CSS ==-->
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet" />
+    <!--== Font Awesome Icon CSS ==-->
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
+    <!--== Bardy Icon CSS ==-->
+    <link href="{% static 'css/bardy.icon.css' %}" rel="stylesheet" />
+    <!--== Swiper CSS ==-->
+    <link href="{% static 'css/swiper.min.css' %}" rel="stylesheet" />
+    <!--== Fancybox Min CSS ==-->
+    <link href="{% static 'css/fancybox.min.css' %}" rel="stylesheet" />
+    <!--== Slicknav Min CSS ==-->
+    <link href="{% static 'css/slicknav.css' %}" rel="stylesheet" />
+    <!--== Aos Min CSS ==-->
+    <link href="{% static 'css/aos.min.css' %}" rel="stylesheet" />
+
+    <!--== Main Style CSS ==-->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+</head>
+
+<body>
+
+<!--wrapper start-->
+<div class="wrapper">
+
+  <!--== Start Preloader Content ==-->
+  <div class="preloader-wrap">
+    <div class="preloader">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!--== End Preloader Content ==-->
+
+  <!--== Start Header Wrapper ==-->
+  <header class="header-area header-default sticky-header">
+    <div class="container">
+      <div class="row align-items-center justify-content-between position-relative">
+        <div class="col">
+          <div class="header-logo-area">
+            <a href="index.html">
+              <img class="logo-main" src="{% static 'img/icons/someMarket.png' %}" alt="Logo" />
+            </a>
+          </div>
+        </div>
+        <div class="col">
+          <div class="header-navigation-area">
+            <ul class="main-menu nav">
+              {% draw_categorys %}
+              <li class="has-submenu"><a href="#/"><span>Все продукты</span></a>
+              </li>
+              <li><a href="contact.html"><span>Связь</span></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col">
+          <div class="header-action-area">
+            <div class="header-action">
+              <div class="header-search">
+                <button class="search-toggle">
+                  <i class="search-icon bardy bardy-search"></i>
+                  <i class="close-icon bardy bardy-cancel"></i>
+                </button>
+                <div class="header-search-form">
+                  <form action="#">
+                    <input type="search" placeholder="Search our store">
+                    <button type="submit"><i class="bardy bardy-search"></i></button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="header-action">
+              <div class="header-mini-cart">
+                <button class="mini-cart-toggle">
+                  <i class="icon bardy bardy-shopping-cart"></i>
+                  <span class="number">2</span>
+                </button>
+                <div class="mini-cart-dropdown">
+                  <h4 class="cart-title">Your cart</h4>
+                  <div class="cart-item-wrap">
+                    <div class="cart-item">
+                      <div class="thumb">
+                        <a href="#/"><img class="w-100" src="assets/img/shop/cart/mini1.jpg" alt="Image-HasTech"></a>
+                        <a class="remove" href="javascript:void(0);"><i class="fa fa-trash-o"></i></a>
+                      </div>
+                      <div class="content">
+                        <h5 class="title"><a href="#/">5. Simple product</a></h5>
+                        <span>1 x Tk 50.00</span>
+                      </div>
+                    </div>
+                    <div class="cart-item">
+                      <div class="thumb">
+                        <a href="#/"><img class="w-100" src="assets/img/shop/cart/mini2.jpg" alt="Image-HasTech"></a>
+                        <a class="remove" href="javascript:void(0);"><i class="fa fa-trash-o"></i></a>
+                      </div>
+                      <div class="content">
+                        <h5 class="title"><a href="#/">2. New badge product - m / gold</a></h5>
+                        <span>1 x Tk 80.00</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mini-cart-footer">
+                    <h4>Subtotal: <span class="total">Tk 130.00</span></h4>
+                    <div class="cart-btn">
+                      <a href="shop-cart.html">View Cart</a>
+                      <a href="shop-checkout.html">Checkout</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="header-action d-block d-lg-none text-end">
+              <button class="btn-menu" type="button"><i class="zmdi zmdi-menu"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!--== End Header Wrapper ==-->
+
+  {% block main %}
+    someMarket
+  {% endblock %}
+  
+
+  <section class="feature-area">
+    <div class="feature-container">
+      <div class="row no-gutter">
+        <div class="feature-col col-xl-3 col-md-6 col-12">
+          <div class="feature-icon-box">
+            <div class="inner-content">
+              <div class="icon-box" data-bg-img="assets/img/icons/1.jpg"></div>
+              <div class="content">
+                <h3 class="title">Бесплатная доставка</h3>
+                <p>Оплатим доставку Вам за наш счёт! *при заказе от 5000 руб.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="feature-col col-xl-3 col-md-6 col-12">
+          <div class="feature-icon-box">
+            <div class="inner-content">
+              <div class="icon-box" data-bg-img="assets/img/icons/1.jpg"></div>
+              <div class="content">
+                <h3 class="title">Качество</h3>
+                <p>Мы заботимся о качестве наших продуктов, это одна из главных наших целей!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="feature-col col-xl-3 col-md-6 col-12">
+          <div class="feature-icon-box">
+            <div class="inner-content">
+              <div class="icon-box" data-bg-img="assets/img/icons/1.jpg"></div>
+              <div class="content">
+                <h3 class="title">3 дня возврата!</h3>
+                <p>Возвращаем деньги, если наши продукты не понравились Вам.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="feature-col col-xl-3 col-md-6 col-12">
+          <div class="feature-icon-box">
+            <div class="inner-content">
+              <div class="icon-box" data-bg-img="assets/img/icons/1.jpg"></div>
+              <div class="content">
+                <h3 class="title">Онлайн поддержка</h3>
+                <p>Почта, телефон, всё что угодно. Главное напиши.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--== Start Footer Area Wrapper ==-->
+  <footer class="footer-area bg-color-222">
+    <div class="footer-top-area">
+      <div class="container">
+        <div class="footer-widget-wrap row">
+          <div class="col">
+            <!--== Start widget Item ==-->
+            <div class="widget-item">
+              <div class="footer-logo-area">
+                <a href="index.html">
+                  <h1 style="color: aliceblue;">someMarket</h1>
+                </a>
+              </div>
+              <p>Ваши деньги - наша забота.</p>
+              <p>Saint-Petersburg, Russia</p>
+              <p>+7 (123) 123-12-12</p>
+              <p>example@gmail.com</p>
+            </div>
+            <!--== End widget Item ==-->
+          </div>
+
+          <div class="col">
+            <!--== Start widget Item ==-->
+            <div class="widget-item">
+              <h4 class="widget-title">Быстрый доступ</h4>
+              <div class="widget-menu-wrap">
+                <ul class="nav-menu">
+                  <li><a href="wishlist.html">Ваша корзина</a></li>
+                  <li><a href="shop.html">Все продукты</a></li>
+                </ul>
+              </div>
+            </div>
+            <!--== End widget Item ==-->
+          </div>
+
+          <div class="col">
+            <!--== Start widget Item ==-->
+            <div class="widget-item">
+              <h4 class="widget-title">Информация</h4>
+              <div class="widget-menu-wrap">
+                <ul class="nav-menu">
+                  <li><a href="#/">Правила & Права</a></li>
+                  <li><a href="shop-shipping-policy.html">Политика продажи</a></li>
+                </ul>
+              </div>
+            </div>
+            <!--== End widget Item ==-->
+          </div>
+
+          <div class="col">
+            <!--== Start widget Item ==-->
+            <div class="widget-item">
+              <h4 class="widget-title">Следи за нами!</h4>
+              <div class="widget-menu-wrap">
+                <ul class="nav-menu">
+                  <li><a href="#/">Instagram</a></li>
+                  <li><a href="#/">YouTube</a></li>
+                  <li><a href="#/">VK</a></li>
+                </ul>
+              </div>
+            </div>
+            <!--== End widget Item ==-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!--== End Footer Area Wrapper ==-->
+
+  <!--== Scroll Top Button ==-->
+  <div id="scroll-to-top" class="scroll-to-top"><span class="fa fa-angle-up"></span></div>
+</div>
+
+<!--=======================Javascript============================-->
+
+<!--=== jQuery Modernizr Min Js ===-->
+<script src="{% static 'js/modernizr.js' %}"></script>
+<!--=== jQuery Min Js ===-->
+<script src="{% static 'js/jquery-main.js' %}"></script>
+<!--=== jQuery Migration Min Js ===-->
+<script src="{% static 'js/jquery-migrate.js' %}"></script>
+<!--=== jQuery Popper Min Js ===-->
+<script src="{% static 'js/popper.min.js' %}"></script>
+<!--=== jQuery Bootstrap Min Js ===-->
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<!--=== jQuery Appear Js ===-->
+<script src="{% static 'js/jquery.appear.js' %}"></script>
+<!--=== jQuery Headroom Min Js ===-->
+<script src="{% static 'js/headroom.min.js' %}"></script>
+<!--=== jQuery Swiper Min Js ===-->
+<script src="{% static 'js/swiper.min.js' %}"></script>
+<!--=== jQuery Fancybox Min Js ===-->
+<script src="{% static 'js/fancybox.min.js' %}"></script>
+<!--=== jQuery Slick Nav Js ===-->
+<script src="{% static 'js/slicknav.js' %}"></script>
+<!--=== jQuery Waypoint Js ===-->
+<script src="{% static 'js/waypoint.js' %}"></script>
+<!--=== jQuery Parallax Min Js ===-->
+<script src="{% static 'js/parallax.min.js' %}"></script>
+<!--=== jQuery Aos Min Js ===-->
+<script src="{% static 'js/aos.min.js' %}"></script>
+<!--=== jQuery Countdown Js ===-->
+<script src="{% static 'js/countdown.js' %}"></script>
+
+<!--=== jQuery Custom Js ===-->
+<script src="{% static 'js/custom.js' %}"></script>
+
+</body>
+
+</html>
