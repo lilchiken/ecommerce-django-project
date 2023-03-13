@@ -57,7 +57,7 @@
       <div class="row align-items-center justify-content-between position-relative">
         <div class="col">
           <div class="header-logo-area">
-            <a href="index.html">
+            <a href="{% url 'store:index' %}">
               <img class="logo-main" src="{% static 'img/icons/someMarket.png' %}" alt="Logo" />
             </a>
           </div>
@@ -66,7 +66,7 @@
           <div class="header-navigation-area">
             <ul class="main-menu nav">
               {% draw_categorys %}
-              <li class="has-submenu"><a href="#/"><span>Все продукты</span></a>
+              <li class="has-submenu"><a href="{% url 'store:all' %}"><span>Все продукты</span></a>
               </li>
               <li><a href="contact.html"><span>Связь</span></a></li>
             </ul>
@@ -81,8 +81,8 @@
                   <i class="close-icon bardy bardy-cancel"></i>
                 </button>
                 <div class="header-search-form">
-                  <form action="#">
-                    <input type="search" placeholder="Search our store">
+                  <form action={% url 'store:search' %} method="get">
+                    <input type="text" name="q">
                     <button type="submit"><i class="bardy bardy-search"></i></button>
                   </form>
                 </div>

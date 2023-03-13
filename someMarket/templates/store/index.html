@@ -9,7 +9,6 @@
       <div class="swiper-container swiper-slide-gap home-slider-container default-slider-container">
         <div class="swiper-wrapper home-slider-wrapper slider-default">
         {% for x in new_cg %}
-            {{ x.image }}
             <div class="swiper-slide">
               <div class="slider-content-area" data-bg-img="{% static 'media/' %}{{ x.image }}">
                 <div class="container">

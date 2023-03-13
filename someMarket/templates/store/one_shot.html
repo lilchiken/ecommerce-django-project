@@ -1,0 +1,184 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block main %}
+<main class="main-content">
+    <!--== Start Product Area Wrapper ==-->
+    <section class="product-area product-single-area">
+      <div class="container">
+        <div class="row flex-row-reverse">
+          <div class="col-lg-9">
+            <div class="product-single-item">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="product-single-slider">
+                    <!--== Start Product Thumbnail Area ==-->
+                    <div class="product-thumb">
+                      <div class="swiper-container single-product-thumb-slider">
+                        <div class="swiper-wrapper">
+                        {% if object.images_more_than_one %}
+                          {% if object.images|length == 3 %}
+                            {% for image in object.images %}
+                              {% if forloop.last %}
+                              {% else %}
+                                <div class="swiper-slide">
+                                  <div class="zoom zoom-hover">
+                                    <a class="lightbox-image" data-fancybox="gallery" href="{% static 'media/' %}{{ image }}">
+                                      <img src="{% static 'media/' %}{{ image }}" alt="Image-HasTech">
+                                    </a>
+                                  </div>
+                                </div>
+                              {% endif %}
+                            {% endfor %}
+                          {% else %}
+                            {% for image in object.images %}
+                              <div class="swiper-slide">
+                                <div class="zoom zoom-hover">
+                                  <a class="lightbox-image" data-fancybox="gallery" href="{% static 'media/' %}{{ image }}">
+                                    <img src="{% static 'media/' %}{{ image }}" alt="Image-HasTech">
+                                  </a>
+                                </div>
+                              </div>
+                            {% endfor %}
+                          {% endif %}
+                        {% else %}
+                          <div class="swiper-slide">
+                            <div class="zoom zoom-hover">
+                              <a class="lightbox-image" data-fancybox="gallery" href="{% static 'media/' %}{{ object.image }}">
+                                <img src="{% static 'media/' %}{{ object.image }}" alt="Image-HasTech">
+                              </a>
+                            </div>
+                          </div>
+                        {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                    <!--== End Product Thumbnail Area ==-->
+
+                    <!--== Start Product Nav Area ==-->
+                    <div class="swiper-container single-product-nav-slider product-nav">
+                      <div class="swiper-wrapper">
+                        {% if object.images_more_than_one %}
+                          {% if object.images|length == 3 %}
+                            {% for image in object.images %}
+                              {% if forloop.last %}
+                              {% else %}
+                                <div class="swiper-slide">
+                                  <img src="{% static 'media/' %}{{ image }}" alt="Image-HasTech">
+                                </div>
+                              {% endif %}
+                            {% endfor %}
+                          {% else %}
+                            {% for image in object.images %}
+                              <div class="swiper-slide">
+                                <img src="{% static 'media/' %}{{ image }}" alt="Image-HasTech">
+                              </div>
+                            {% endfor %}
+                          {% endif %}
+                        {% endif %}
+                      </div>
+
+                      <!--== Add Swiper navigation Buttons ==-->
+                      <div class="swiper-button-prev"><i class="fa fa-angle-left"></i></div>
+                      <div class="swiper-button-next"><i class="fa fa-angle-right"></i></div>
+                    </div>
+                    <!--== End Product Nav Area ==-->
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <!--== Start Product Info Area ==-->
+                  <div class="product-single-info">
+                    <h4 class="title">{{ object.name }} {{ object.grid_sizes }}</h4>
+                    {% for x in object.grid_sizes %}
+                      {{ x }}
+                    {% endfor %}
+                    <div class="prices">
+                      <span class="price">{{ object.price }} RUB</span>
+                    </div>
+                    <p>{{ object.description }}</p>
+                    <div class="product-select-action">
+                      <div class="select-item">
+                        <div class="select-size-wrap">
+                          <span>Размер:</span>
+                          <ul>
+                            <li class="active"><a href="#/">s</a></li>
+                            <li><a href="#/">m</a></li>
+                            <li><a href="#/">l</a></li>
+                            <li><a href="#/">xl</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="select-item">
+                        <div class="select-color-wrap">
+                          <span>Цвет:</span>
+                          <ul>
+                            <li class="red active"></li>
+                            <li class="green"></li>
+                            <li class="blue"></li>
+                            <li class="yellow"></li>
+                            <li class="white"></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="product-action-simple">
+                      <div class="product-quick-action">
+                        <div class="product-quick-qty">
+                          <span>Количество:</span>
+                          <div class="pro-qty">
+                            <input type="text" id="quantity" title="Quantity" value="1">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="cart-wishlist-button">
+                        <a href="shop-cart.html" class="btn-cart">Добавить в корзину</a>
+                      </div>
+                    </div>
+                  </div>
+                  <!--== End Product Info Area ==-->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <!--== Start Product Sidebar Wrapper ==-->
+            <div class="product-sidebar-wrapper product-sidebar-left">
+
+              <!--== Start Sidebar Item ==-->
+              <div class="product-sidebar-item">
+                <h4 class="product-sidebar-title">Посмотрите также</h4>
+                <div class="product-sidebar-body">
+                  <div class="product-sidebar-nav-menu">
+                    {% for prod in other_prods %}
+                      <a href="{% url 'store:one-shot' prod.id %}">{{ prod.name }}</a>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+              <!--== End Sidebar Item ==-->
+
+              <!--== Start Sidebar Item ==-->
+              <div class="product-sidebar-item">
+                <h4 class="product-sidebar-title">Блок рекламы</h4>
+                <div class="product-sidebar-body">
+                  <!--== Start Product Item ==-->
+                  <div class="product-sidebar-item">
+                    <div class="thumb">
+                      <a href="single-product-simple.html">
+                        <img class="w-100" src="assets/img/slider/slider-05.jpg" alt="Image-HasTech">
+                      </a>
+                    </div>
+                  </div>
+                  <!--== End Product Item ==-->
+                </div>
+              </div>
+              <!--== End Sidebar Item ==-->
+            </div>
+            <!--== End Product Sidebar Wrapper ==-->
+          </div>
+        </div>
+      </div>
+    </section>
+</main>
+{% endblock %}

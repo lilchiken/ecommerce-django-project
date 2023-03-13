@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from store.models import Category, Product
+from store.models import Category, Product, Color, Count, Size
 
 
 @admin.register(Category)
@@ -33,3 +33,22 @@ class ProductAdmin(admin.ModelAdmin):
         'category'
     )
     empty_value_display = '-'
+
+@admin.register(Size)
+class SizeAdmin(admin.ModelAdmin):
+   list_display = ('title',)
+
+
+@admin.register(Color)
+class ColorAdmin(admin.ModelAdmin):
+    list_display = ('title',)
+
+
+@admin.register(Count)
+class CountAdmin(admin.ModelAdmin):
+    list_display = (
+        'count',
+        'color',
+        'size',
+        'product'
+    )
