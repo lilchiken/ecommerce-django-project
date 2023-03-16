@@ -20,13 +20,11 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'name',
-        # 'categorys',
         'price'
     )
     list_editable = (
         'name',
         'price',
-        # 'categorys'
     )
     search_fields = (
         'name',
@@ -47,8 +45,8 @@ class ColorAdmin(admin.ModelAdmin):
 @admin.register(Count)
 class CountAdmin(admin.ModelAdmin):
     list_display = (
-        'count',
-        'color',
+        'product',
         'size',
-        'product'
+        'color',
+        'count',
     )

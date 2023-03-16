@@ -131,17 +131,9 @@ class Product(models.Model):
         null=True,
         default=None
     )
-    count_stock = models.IntegerField(
-        verbose_name='Количество в наличии',
-        editable=True
-    )
 
     def __str__(self) -> str:
         return self.name
-    
-    @property
-    def is_active(self):
-        return True if self.count_stock > 0 else False
     
     @property
     def images(self):
@@ -163,12 +155,32 @@ class Product(models.Model):
     
     @property
     def grid_sizes(self):
-        counts = Count.objects.filter(product=self.pk).values_list('id')
-        return Size.objects.filter(grid__in=counts)
-        list_size = set()
-        for x in self.grid:
-            list_size.add(x.size)
-        return list_size
+        return set(
+            Size.objects.filter(
+                grid__product_id=self.pk,
+                grid__count__gt=0
+            )
+        )
+    
+    @property
+    def grid_colors(self):
+        return set(
+            Color.objects.filter(
+                grid__product_id=self.pk,
+                grid__count__gt=0
+            )
+        )
+    
+    @property
+    def count(self):
+        return sum(
+            Count.objects.filter(
+                product_id=self.pk
+            ).values_list(
+                'count',
+                flat=True
+            )
+        )
     
     class Meta:
         ordering = ('-pub_date',)

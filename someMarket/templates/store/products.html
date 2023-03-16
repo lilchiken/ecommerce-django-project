@@ -15,12 +15,14 @@
             <div class="nav-short-area">
               <div class="toolbar-shorter">
                 <label for="SortBy">Отсортировать</label>
-                <select id="SortBy" class="form-select" aria-label="Sort by">
-                  <option value="price-ascending">Цене, от меньшей к большему</option>
-                  <option value="price-descending">Цене, от большей к меньшей</option>
-                  <option value="created-descending">Дате, от новой до старой</option>
-                  <option value="created-ascending">Дате, от старой до новой</option>
-                </select>
+                <form id="SortBy" name="SortBy" action="{% url 'store:all' %}" method="get">
+                  <select id="SortBy" class="form-select" form="SortBy" inputmode="submit" onclick="submit">
+                    <option value="price-ascending" inputmode="submit">Цене, от меньшей к большему</option>
+                    <option value="price-descending">Цене, от большей к меньшей</option>
+                    <option value="created-descending" selected>Дате, от новой до старой</option>
+                    <option value="created-ascending">Дате, от старой до новой</option>
+                  </select>
+                </form>
               </div>
             </div>
           </div>
@@ -39,7 +41,7 @@
                         </div>
                         <div class="product-desc">
                           <div class="product-info">
-                            <h4 class="title"><a href="shop-single.html">{{ object }}</a></h4>
+                            <h4 class="title"><a href="{% url 'store:one-shot' object.id %}">{{ object }}</a></h4>
                             <div class="prices">
                                 <span class="price">{{ object.price }} RUB</span>
                             </div>
@@ -49,7 +51,7 @@
                                 <li> • <a href="{% url 'store:category' category.slug %}"> {{ category.title }}</a></li>
                             {% endfor %}
                             </ul>
-                            {% if object.is_active %}
+                            {% if object.count %}
                               <p><h6>В наличии</h6></p>
                             {% else %}
                               <p><h6>Нет в наличии</h6></p>

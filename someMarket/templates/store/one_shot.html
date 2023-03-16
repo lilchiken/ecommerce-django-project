@@ -89,23 +89,23 @@
                 <div class="col-lg-6">
                   <!--== Start Product Info Area ==-->
                   <div class="product-single-info">
-                    <h4 class="title">{{ object.name }} {{ object.grid_sizes }}</h4>
-                    {% for x in object.grid_sizes %}
-                      {{ x }}
-                    {% endfor %}
+                    <h4 class="title">{{ object.name }}</h4>
                     <div class="prices">
                       <span class="price">{{ object.price }} RUB</span>
                     </div>
                     <p>{{ object.description }}</p>
+                    <p>В наличии: {{ object.count }} шт.</p>
                     <div class="product-select-action">
                       <div class="select-item">
                         <div class="select-size-wrap">
                           <span>Размер:</span>
                           <ul>
-                            <li class="active"><a href="#/">s</a></li>
-                            <li><a href="#/">m</a></li>
-                            <li><a href="#/">l</a></li>
-                            <li><a href="#/">xl</a></li>
+                            {% for x in object.grid_sizes %}
+                              <li><a href="">{{ x }}</a></li>
+                              <!-- Проверка на выбор -->
+                              <!-- Можно реализовать как редирект на страницу, либо же в баскете заполнять чойсфилды -->
+                              <!-- <li class="active"><a href="#/">s</a></li> -->
+                            {% endfor %}
                           </ul>
                         </div>
                       </div>
@@ -113,11 +113,12 @@
                         <div class="select-color-wrap">
                           <span>Цвет:</span>
                           <ul>
-                            <li class="red active"></li>
-                            <li class="green"></li>
-                            <li class="blue"></li>
-                            <li class="yellow"></li>
-                            <li class="white"></li>
+                            {% for x in object.grid_colors %}
+                              <li class="{{ x }}"></li>
+                              <!-- Проверка на выбор -->
+                              <!-- Можно реализовать как редирект на страницу, либо же в баскете заполнять чойсфилды -->
+                              <!-- <li class="active"><a href="#/">s</a></li> -->
+                            {% endfor %}
                           </ul>
                         </div>
                       </div>

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, View
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, get_list_or_404
 
@@ -45,6 +45,11 @@ class AllProductsView(ListView):
     model = Product
     template_name = 'store/products.html'
 
+    def get_queryset(self):
+        print(self.request.GET.get('Sort By'))
+        return super().get_queryset()
+    
+
 
 class ProductView(DetailView):
     model = Product
@@ -52,6 +57,6 @@ class ProductView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        max_count_products = Product.objects.order_by('-count_stock')[:5]
+        max_count_products = Product.objects.all()[:5]
         context['other_prods'] = max_count_products
         return context
