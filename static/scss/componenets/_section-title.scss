@@ -1,0 +1,43 @@
+/*
+-----------------------------------------------------------------------
+  Section Title CSS
+-----------------------------------------------------------------------
+*/
+
+.section-title {
+  margin-bottom: 64px;
+  @media #{$md-device} {
+    margin-bottom: 40px;
+  }
+  
+  .sub-title {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+
+  .title {
+    font-size: 36px;
+    font-weight: $font-weight-semi-bold;
+    letter-spacing: 0.25px;
+    line-height: 1;
+    margin-bottom: 19px;
+    position: relative;
+    z-index: 1;
+    @media #{$md-device} {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .desc {
+    p {}
+  }
+
+  &-style-two {}
+
+  &-light {
+    .sub-title {}
+
+    .title {}
+  }
+}

@@ -1,0 +1,128 @@
+/*
+-----------------------------------------------------------------------
+    Contact CSS
+-----------------------------------------------------------------------
+*/
+
+.contact-area {
+  .container {
+    padding-top: 90px;
+    padding-bottom: 72px;
+    @media #{$lg-device} {
+      padding-bottom: 50px;
+      padding-top: 66px;
+    }
+  }
+}
+
+.account-area {
+  .container {
+    padding-top: 100px;
+    padding-bottom: 130px;
+    @media #{$lg-device} {
+      padding-top: 70px;
+      padding-bottom: 70px;
+    }
+  }
+}
+
+.search-area {
+  margin-top: 30px;
+  margin-bottom: 80px;
+  @media #{$lg-device} {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+}
+
+.contact-info {
+  background-color: #222222;
+  max-width: 435px;
+  padding: 95px 60px;
+  @media #{$md-device} {
+    margin-bottom: 50px;
+  }
+  @media #{$md-device} {
+    padding: 55px 40px;
+  }
+
+  .info-item {
+    border-bottom: 1px dashed #636363;
+    margin-bottom: 31px;
+    padding-bottom: 30px;
+
+    .info {
+      .title {
+        color: #d8d8d8;
+        font-size: 18px;
+        font-weight: $font-weight-semi-bold;
+        margin-bottom: 10px;
+      }
+
+      p {
+        color: #d8d8d8;
+        font-size: 15px;
+        line-height: 28px;
+        max-width: 250px;
+      }
+
+      a {
+        color: #d8d8d8;
+        font-size: 15px;
+        line-height: 28px;
+        display: block;
+
+        &:hover {
+          color: $theme-color;
+        }
+      }
+    }
+
+    &:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+}
+
+.account-form-wrap {
+  box-shadow: 2px 2px 11px 0 rgb(0 0 0 / 10%);
+  background: $white-f3 none repeat scroll 0 0;
+  padding: 35px 60px 86px;
+  @media #{$xs-device} {
+    padding: 35px 20px 38px;
+  }
+
+  .content {
+    text-align: center;
+
+    .title {
+      color: $black-333;
+      font-size: 30px;
+      font-weight: $font-weight-normal;
+      margin-bottom: 5px;
+    }
+
+    p {
+      color: $black-666;
+      font-size: 15px;
+      margin-bottom: 49px;
+    }
+  }
+}
+
+.search-form-wrap {
+  @media #{$lg-device} {
+    margin-bottom: 50px;
+  }
+  .content {
+    text-align: center;
+    .title {
+      color: $heading-color;
+      font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 31px;
+    }
+  }
+}

@@ -1,0 +1,67 @@
+/*
+-----------------------------------------------------------------------
+    Divider CSS
+-----------------------------------------------------------------------
+*/
+.divider-area {
+  &.divider-offer-area {
+    .container {
+      padding-bottom: 80px;
+      padding-top: 80px;
+      @media #{$lg-device} {
+        padding-bottom: 65px;
+        padding-top: 60px;
+      }
+    }
+  }
+}
+
+.divider {
+  &-style-wrap {
+    .divider-content {
+      .sub-title {
+        font-weight: $font-weight-light;
+        color: #d8d8d8;
+        letter-spacing: 0.1px;
+        margin-bottom: 13px;
+        @media #{$md-device} {
+          font-size: 20px;
+        }
+
+        span {
+          color: $theme-color;
+          font-weight: $font-weight-semi-bold;
+        }
+      }
+
+      .title {
+        font-size: 36px;
+        font-weight: $font-weight-semi-bold;
+        color: #d8d8d8;
+        letter-spacing: 0.1px;
+        margin-bottom: 12px;
+        @media #{$md-device} {
+          font-size: 26px;
+        }
+        @media #{$xs-device} {
+          font-size: 20px;
+        }
+      }
+
+      p {
+        color: #d8d8d8;
+        line-height: 28px;
+      }
+
+      .newsletter-content-wrap {
+        .newsletter-form {
+          position: relative;
+          max-width: 525px;
+          width: 100%;
+          margin: auto;
+          margin-top: 41px;
+        }
+      }
+    }
+  }
+}

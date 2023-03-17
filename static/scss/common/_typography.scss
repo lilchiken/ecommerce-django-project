@@ -1,0 +1,117 @@
+/*
+-----------------------------------------------------------------------
+  Typography CSS
+-----------------------------------------------------------------------
+*/
+
+body {
+  color: $body-color;
+  font-size: $font-size-base;
+  font-family: $body-font;
+  font-weight: $font-weight-normal;
+  line-height: $body-line-height;
+  margin: 0;
+  overflow-x: hidden;
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  color: $heading-color;
+  font-family: $heading-font;
+  font-weight: $heading-font-weight;
+  line-height: 1.1;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+a {
+  color: $theme-color;
+  text-decoration: none;
+  @include transition(all .3s ease-out);
+
+  &:hover,
+  &:active,
+  &:focus {
+    box-shadow: none;
+    color: darken($theme-color, 15%);
+    outline: none;
+    text-decoration: none;
+  }
+
+  img {
+    border: none;
+  }
+}
+
+.btn:focus {
+  box-shadow: none;
+}
+
+p {
+  margin-bottom: 30px;
+
+  &:last-child{
+    margin-bottom: 0;
+  }
+}
+
+:active,
+:focus {
+  box-shadow: none;
+  outline: none !important;
+}
+
+::selection {
+  background: $theme-color;
+  color: $white;
+  text-shadow: none;
+}
+
+::-moz-selection {
+  background: $theme-color; /* Firefox */
+  color: $white;
+  text-shadow: none;
+}
+
+::-webkit-selection {
+  background: $theme-color; /* Safari */
+  color: $white;
+  text-shadow: none;
+}
+
+img { max-width: 100%; }
+
+iframe { border: none !important; }
+
+textarea, input {
+  &:focus, &:active {
+    outline: none;
+  }
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+  }
+}
+
+pre,
+ul,
+ol,
+dl,
+dd,
+blockquote,
+address,
+table,
+fieldset { 
+  margin-bottom: 30px;
+}
+
+table p {
+  margin-bottom: 0;
+}

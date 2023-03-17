@@ -124,16 +124,17 @@
                       </div>
                     </div>
                     <div class="product-action-simple">
-                      <div class="product-quick-action">
+                      <!-- Сделать на отдельной странице -->
+                      <!-- <div class="product-quick-action">
                         <div class="product-quick-qty">
                           <span>Количество:</span>
                           <div class="pro-qty">
                             <input type="text" id="quantity" title="Quantity" value="1">
                           </div>
                         </div>
-                      </div>
+                      </div> -->
                       <div class="cart-wishlist-button">
-                        <a href="shop-cart.html" class="btn-cart">Добавить в корзину</a>
+                        <a href="{% url 'cart:cart-add' object.id %}" class="btn-cart">Добавить в корзину</a>
                       </div>
                     </div>
                   </div>

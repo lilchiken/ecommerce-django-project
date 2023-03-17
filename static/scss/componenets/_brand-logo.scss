@@ -1,0 +1,33 @@
+/*
+-----------------------------------------------------------------------
+  Brand Logo CSS
+-----------------------------------------------------------------------
+*/
+
+.brand-logo-area {
+  .swiper-container {
+    &.swiper-slide-gap {
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
+
+.brand-logo-item {
+  text-align: center;
+  img {
+    @include transition(all .3s ease-out);
+  }
+
+  &:hover {
+    img {
+      opacity: .6;
+    }
+  }
+}
+
+.brand-logo-slider-container {
+  .swiper-wrapper {
+    align-items: center;
+  }
+}

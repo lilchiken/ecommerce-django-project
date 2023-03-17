@@ -1,0 +1,145 @@
+/*
+-----------------------------------------------------------------------
+    About CSS
+-----------------------------------------------------------------------
+*/
+
+.about-area {
+  &.about-inner-area {
+    .container {
+      padding-top: 90px;
+      padding-bottom: 60px;
+      @media #{$lg-device} {
+        padding-top: 60px;
+        padding-bottom: 20px;
+      }
+    }
+  }
+}
+
+.about-position-style {
+  .about-thumb {
+    display: flex;
+    height: 100%;
+    width: 100%;
+
+    .image {
+      &-1 {
+        width: 65%;
+      }
+
+      &-1,
+      &-2 {
+        min-height: 569px;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        @media #{$md-device} {
+          min-height: 400px;
+        }
+      }
+
+      &-2 {
+        width: 40%;
+        position: relative;
+      }
+    }
+  }
+
+  .about-content {
+    padding: 90px 143px 90px 80px;
+    @media #{$xl-device} {
+      padding: 80px 60px 80px 30px;
+    }
+    @media #{$lg-device} {
+      padding: 60px 60px 65px 30px;
+    }
+    @media #{$md-device} {
+      padding: 50px 20px 55px 20px;
+    }
+
+    .section-title {
+      .sub-title {}
+      .title {
+        margin-bottom: 28px;
+      }
+
+      .desc {
+        p {
+          line-height: 28px;
+
+          &:first-child {
+            margin-bottom: 16px;
+          }
+
+          &:last-child {
+            margin-bottom: 36px;
+          }
+        }
+      }
+    }
+
+    .btn-theme {}
+  }
+}
+
+.about-inner-wrap {
+  .about-thumb {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 40px;
+    margin-right: 50px;
+    margin-left: -15px;
+    @media #{$lg-device} {
+      margin-right: 0;
+      margin-left: 0;
+    }
+    img {
+      @media #{$lg-device} {
+        width: 100%;
+      }
+    }
+  }
+
+  .about-content {
+    @media #{$md-device} {
+      margin-bottom: 40px;
+    }
+    .section-title {
+      .sub-title {
+        margin-top: 35px;
+        @media #{$xl-device} {
+          margin-top: 0;
+        }
+      }
+      .title {
+        margin-bottom: 28px;
+        letter-spacing: 0;
+      }
+
+      .desc {
+        p {
+          line-height: 28px;
+
+          &:first-child {
+            margin-bottom: 16px;
+          }
+
+          &:last-child {
+            margin-bottom: 36px;
+          }
+        }
+      }
+    }
+
+    .btn-theme {
+      background-color: $black-222;
+      border: 1px solid $black-222;
+      &:hover {
+        background-color: $theme-color;
+        border: 1px solid $theme-color;
+      }
+    }
+  }
+}

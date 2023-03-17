@@ -1,20 +1,17 @@
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView, View
+from django.views.generic import ListView, DetailView
 from django.db.models import Q
-from django.shortcuts import get_object_or_404, get_list_or_404
+from django.shortcuts import get_object_or_404
 
 from store.models import Category
 from store.models import Product
 
-def index(request):
-    categorys = Category.objects.filter(image__isnull=False)[:3]
-    return render(
-        request,
-        'store/index.html',
-        {
-            'new_cg': categorys
-        }
-    )
+
+class IndexView(ListView):
+    model = Category
+    template_name = 'store/index.html'
+
+    def get_queryset(self):
+        return Category.objects.filter(image__isnull=False)[:3]
 
 
 class CategoryView(ListView):
@@ -46,7 +43,7 @@ class AllProductsView(ListView):
     template_name = 'store/products.html'
 
     def get_queryset(self):
-        print(self.request.GET.get('Sort By'))
+        # print(self.request.GET.get('Sort By'))
         return super().get_queryset()
     
 

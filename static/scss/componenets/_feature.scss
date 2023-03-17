@@ -1,0 +1,141 @@
+/*
+-----------------------------------------------------------------------
+    Feature CSS
+-----------------------------------------------------------------------
+*/
+
+.feature-area {
+  background-color: #F8F9F7;
+
+  .feature-container {
+    max-width: 1520px;
+    margin: auto;
+    padding: 26px 0 25px;
+    position: relative;
+    z-index: 9;
+    width: 100%;
+  }
+
+  .feature-col {
+    &:nth-child(2) {
+      .icon-box {
+        background-position: -52px 0;
+      }
+    }
+
+    &:nth-child(3) {
+      .icon-box {
+        background-position: -104px 0;
+      }
+    }
+
+    &:nth-child(4) {
+      .feature-icon-box {
+        .inner-content {
+          &:before {
+            display: none;
+          }
+        }
+      }
+      
+      .icon-box {
+        background-position: -156px 0;
+      }
+    }
+
+    &:hover {
+      &:nth-child(1) {
+        .icon-box {
+          background-position: 0 -43px;
+        }
+      }
+
+      &:nth-child(2) {
+        .icon-box {
+          background-position: -52px -43px;
+        }
+      }
+
+      &:nth-child(3) {
+        .icon-box {
+          background-position: -104px -43px;
+        }
+      }
+
+      &:nth-child(4) {
+        .icon-box {
+          background-position: -156px -43px;
+        }
+      }
+    }
+  }
+}
+
+.feature-icon-box {
+  .inner-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 15px 40px;
+    position: relative;
+    @media #{$xl-device} {
+      padding: 15px 14px;
+    }
+    @media #{$sm-device} {
+      width: 300px;
+      margin: 0 auto;
+    }
+
+    &:before {
+      background-color: #ebebeb;
+      bottom: 18px;
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 18px;
+      width: 1px;
+      @media #{$lg-device} {
+        display: none;
+      }
+    }
+
+    .icon-box {
+      background-repeat: no-repeat;
+      height: 43px;
+      width: 52px;
+      @include transition(all .3s ease-out);
+    }
+
+    .content {
+      padding-left: 25px;
+      width: calc(100% - 52px);
+      @media #{$xl-device} {
+        padding-left: 20px;
+      }
+
+      .title {
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 8px;
+        @media #{$xl-device} {
+          font-size: 18px;
+        }
+      }
+
+      p {
+        font-size: 15px;
+        line-height: 28px;
+        @media #{$xl-device} {
+          font-size: 14px;
+          line-height: 24px;
+        }
+      }
+    }
+
+    &:hover {
+      .icon-box {
+        color: $theme-color;
+      }
+    }
+  }
+}

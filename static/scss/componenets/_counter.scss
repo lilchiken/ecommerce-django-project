@@ -1,0 +1,51 @@
+/*
+-----------------------------------------------------------------------
+  Counter CSS
+-----------------------------------------------------------------------
+*/
+
+.ht-countdown {
+  &-style {
+    bottom: 8px;
+    position: absolute;
+    display: flex;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    @include transition(all .3s ease-out);
+
+    .countdown-item {
+      background-color: $theme-color;
+      border-radius: 0;
+      color: $white;
+      display: inline-block;
+      font-size: 14px;
+      height: 55px;
+      line-height: 1;
+      margin-right: 4px;
+      padding-top: 9px;
+      text-align: center;
+      width: 50px;
+
+      &__time {
+        display: block;
+        font-size: 14px;
+        line-height: 1;
+        color: $white;
+        margin-bottom: 7px;
+      }
+
+      &__label {
+        color: $white;
+        line-height: 1;
+      }
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}

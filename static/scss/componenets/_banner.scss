@@ -1,0 +1,197 @@
+/*
+-----------------------------------------------------------------------
+    Home Slider CSS
+-----------------------------------------------------------------------
+*/
+
+.home-slider-area {
+  .home-slider-container {
+    position: relative;
+
+    .home-slider-wrapper {
+      position: relative;
+
+      &.slider {
+        &-default {
+            .swiper-slide {
+              &-active {
+                .slider-content-area {
+                  .slider-content {
+                    .sub-title {
+                      -webkit-animation-delay: 0.3s;
+                      animation-delay: 0.3s;
+                      -webkit-animation-name: fadeInRight;
+                      animation-name: fadeInRight;
+                    }
+                    .title {
+                      -webkit-animation-name: fadeInUp;
+                      animation-name: fadeInUp;
+                      -webkit-animation-delay: 0.8s;
+                      animation-delay: 0.8s;
+                    }
+                    .btn-slider {
+                      -webkit-animation-name: fadeInLeft;
+                      animation-name: fadeInLeft;
+                      -webkit-animation-delay: 1.3s;
+                      animation-delay: 1.3s;
+                    }
+                  }
+                }
+              }
+            }
+
+          .slider-content-area {
+            align-items: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            display: flex;
+            height: calc(100vh - 80px);
+            justify-content: flex-end;
+            position: relative;
+            z-index: 999;
+            @media #{$lg-device} {
+              height: 700px;
+            }
+            @media #{$md-device} {
+              height: 570px;
+            }
+            @media #{$sm-device} {
+              height: 460px;
+            }
+
+            .slider-content {
+              z-index: 999;
+              position: relative;
+              @media #{$xs-device} {
+                text-align: center;
+              }
+
+              .sub-title,
+              .title,
+              .btn-slider {
+                -webkit-animation-duration: 1s;
+                animation-duration: 1s;
+                -webkit-animation-fill-mode: both;
+                animation-fill-mode: both;
+                -webkit-animation-name: fadeOut;
+                animation-name: fadeOut;
+              }
+
+              .sub-title {
+                color: $black-222;
+                font-size: 30px;
+                font-weight: $font-weight-light;
+                line-height: 1;
+                letter-spacing: 0.5px;
+                margin-bottom: 8px;
+                text-transform: uppercase;
+                @media #{$lg-device} {
+                  font-size: 20px;
+                }
+                @media #{$sm-device} {
+                  font-size: 16px;
+                }
+              }
+
+              .title {
+                color: $black-222;
+                font-size: 60px;
+                line-height: 78px;
+                font-weight: $font-weight-medium;
+                letter-spacing: 0.1px;
+                margin-bottom: 32px;
+                @media #{$lg-device} {
+                  font-size: 50px;
+                  line-height: 68px;
+                  margin-bottom: 22px;
+                }
+                @media #{$md-device} {
+                  font-size: 40px;
+                  line-height: 55px;
+                }
+                @media #{$sm-device} {
+                  font-size: 30px;
+                  line-height: 40px;
+                  margin-bottom: 15px;
+                }
+              }
+
+              .btn-slider {
+                background-color: $black-222;
+                border: 1px solid $black-222;
+                border-radius: 50px;
+                color: $white;
+                display: inline-block;
+                font-size: 18px;
+                font-weight: $font-weight-semi-bold;
+                height: 46px;
+                line-height: 25px;
+                letter-spacing: 0.25px;
+                padding: 9px 30px;
+                text-transform: uppercase;
+                @include transition(all .4s ease-out);
+                @media #{$sm-device} {
+                  font-size: 14px;
+                  height: 42px;
+                  line-height: 22px;
+                  padding: 8px 22px;
+                }
+
+                &:hover {
+                  background-color: $theme-color;
+                  border-color: $theme-color;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .swiper-button {
+      &-next,
+      &-prev {
+        box-shadow: 0 5px 10px rgb(0 0 0 / 15%);
+        background-color: $black-222;
+        border-radius: 50%;
+        color: $white;
+        border: none;
+        font-size: 30px;
+        height: 60px;
+        position: absolute;
+        text-align: center;
+        top: 52%;
+        width: 60px;
+        @include transform(translateY(-50%));
+        @include transition(all .4s ease-out);
+        z-index: 9;
+        @media #{$xl-device} {
+          display: none;
+        }
+
+        &:after {
+          display: none;
+        }
+
+        &:hover {
+          background-color: $theme-color;
+        }
+      }
+
+      &-next {
+        right: 15px;
+      }
+      &-prev {
+        left: 15px;
+      }
+    }
+
+    &:hover {
+      .swiper-button {
+        &-next,
+        &-prev {}
+      }
+    }
+  }
+}

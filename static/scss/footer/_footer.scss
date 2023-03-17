@@ -1,0 +1,112 @@
+/*
+-----------------------------------------------------------------------
+  Footer CSS
+-----------------------------------------------------------------------
+*/
+
+.footer-area {
+  padding-top: 99px;
+  @media #{$lg-device} {
+    padding-top: 60px;
+  }
+
+  .footer-widget-wrap {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding-bottom: 60px;
+    @media #{$lg-device} {
+      padding-bottom: 28px;
+    }
+
+    .col {
+      -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+      flex-grow: 0;
+    }
+  }
+
+  p {
+    color: #d8d8d8;
+    width: 270px;
+    line-height: 23px;
+    margin-bottom: 16px;
+  }
+
+  .footer-logo-area {
+    margin-bottom: 18px;
+
+    .logo-main {}
+  }
+
+  .widget-item {
+    margin-bottom: 30px;
+
+    .widget-title {
+      color: #d8d8d8;
+      white-space: nowrap;
+      margin-bottom: 20px;
+      margin-top: 16px;
+    }
+  }
+
+  .widget-menu-wrap {
+    .nav-menu {
+      margin-bottom: 0;
+
+      li {
+        color: #d8d8d8;
+        white-space: nowrap;
+        display: block;
+        line-height: 23px;
+        margin-bottom: 12px;
+
+        a {
+          color: #d8d8d8;
+
+          &:hover {
+            color: $theme-color;
+          }
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    background-color: $white;
+    padding-bottom: 20px;
+    padding-top: 21px;
+
+    .copyright {
+      color: $black-222;
+      font-size: 15px;
+      line-height: 22px;
+      margin-bottom: 0;
+      @media #{$md-device} {
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      a {
+        color: $black-222;
+        font-weight: $font-weight-bold;
+
+        &:hover {
+          color: $theme-color;
+        }
+      }
+    }
+
+    .payment-method {
+      text-align: right;
+      @media #{$md-device} {
+        text-align: center;
+        margin-top: 10px;
+      }
+    }
+  }
+}

@@ -1,0 +1,84 @@
+//== Typography
+//
+//## Font and Color for body text, headings, and more.
+$font-current-theme1:	 "Open Sans", sans-serif;
+$font-current-theme2:	  "Oswald", sans-serif;
+
+$body-font:				  $font-current-theme1;
+$heading-font:			  $font-current-theme1;
+
+
+$font-size-base: 15px;
+
+
+$font-weight-light:           300;
+$font-weight-normal:          400;
+$font-weight-medium:          500;
+$font-weight-semi-bold:       600;
+$font-weight-bold:            700;
+$font-weight-extra-bold:      800;
+$font-weight-black:           900;
+
+// heading font weight
+$heading-font-weight:     	  $font-weight-normal;
+
+
+// body line height
+$body-line-height:            1.6;
+
+// body color
+$body-color:            #222222;
+
+// heading color
+$heading-color:         #222222;
+
+// theme color
+$theme-color:			#ff383f;
+$theme-color2:			#d0a97e;
+$theme-color3:			#FEF6EC;
+$theme-color4:			#0b1521;
+
+// common color
+$black:					#000;
+$black-111:				#111;
+$black-222:				#222;
+$black-333:				#333;
+$black-444:				#444;
+$black-555:				#555;
+$black-666:				#666;
+$black-777:				#777;
+$black-888:				#888;
+$black-999:				#999;
+
+$white:			 		#fff;
+$white-f1:			 	#f1f1f1;
+$white-f2:			 	#f2f2f2;
+$white-f3:			 	#f3f3f3;
+$white-f4:			 	#f4f4f4;
+$white-f5:			 	#f5f5f5;
+$white-f6:			 	#f6f6f6;
+$white-f7:			 	#f7f7f7;
+$white-f8:			 	#f8f8f8;
+$white-f9:			 	#f9f9f9;
+$white-fa:			 	#fafafa;
+$white-fb:			 	#fbfbfb;
+$white-fc:			 	#fcfcfc;
+$white-fd:			 	#fdfdfd;
+$white-fe:			 	#fefefe;
+$gray-light:			#ddd;
+$gray-lighter:			#eee;
+
+
+
+//== Responsive Media Query Variables
+//
+$xxl-device:   		 'only screen and (min-width: 1400px)';
+$xl-device:    		 'only screen and (max-width: 1399.98px)';
+$lg-device:    		 'only screen and (max-width: 1199px)';
+$md-device:    	 	 'only screen and (max-width: 991px)';
+$sm-device:    		 'only screen and (max-width: 767px)';
+$xs-device:    		 'only screen and (max-width: 575px)';
+$xxs-device:   		 'only screen and (max-width: 479.98px)';
+
+$xl-down-device:     'only screen and (min-width: 1200px)';
+$lg-down-device:     'only screen and (min-width: 992px)';

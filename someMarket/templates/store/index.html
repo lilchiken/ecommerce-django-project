@@ -8,7 +8,7 @@
     <section class="home-slider-area">
       <div class="swiper-container swiper-slide-gap home-slider-container default-slider-container">
         <div class="swiper-wrapper home-slider-wrapper slider-default">
-        {% for x in new_cg %}
+        {% for x in object_list %}
             <div class="swiper-slide">
               <div class="slider-content-area" data-bg-img="{% static 'media/' %}{{ x.image }}">
                 <div class="container">
@@ -17,7 +17,7 @@
                       <div class="slider-content">
                         <h5 class="sub-title">{{ x.pub_date }}</h5>
                         <h2 class="title">{{ x }}</h2>
-                        <a class="btn-slider" href="shop.html">Shop Now</a>
+                        <a class="btn-slider" href="shop.html">Посмотреть</a>
                       </div>
                     </div>
                   </div>

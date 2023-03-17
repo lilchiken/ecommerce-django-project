@@ -1,0 +1,223 @@
+/*
+-----------------------------------------------------------------------
+    Blog CSS
+-----------------------------------------------------------------------
+*/
+
+.blog-inner-area {
+  .container {
+    padding-top: 94px;
+    padding-bottom: 57px;
+    @media #{$lg-device} {
+      padding-top: 66px;
+      padding-bottom: 5px;
+    }
+  }
+  .post-item {
+    .inner-content {
+      margin-bottom: 40px;
+    }
+  }
+}
+
+.post-item {
+  .inner-content {
+    background-color: $white;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 10%);
+    @media #{$lg-device} {
+      margin-bottom: 30px;
+    }
+
+    .thumb {}
+
+    .content {
+      padding: 30px;
+      @media #{$lg-device} {
+        padding: 25px;
+      }
+      
+      .title {
+        font-size: 20px;
+        font-weight: $font-weight-semi-bold;
+        letter-spacing: 0.25px;
+        line-height: 24px;
+        margin-bottom: 15px;
+        @media #{$lg-device} {
+          font-size: 18px;
+        }
+
+        a {
+          color: $black-222;
+
+          &:hover {
+            color: $theme-color;
+          }
+        }
+      }
+
+      p {
+        margin-bottom: 15px;
+      }
+
+      .btn-link {
+        margin-bottom: 14px;
+      }
+    }
+
+    .meta-info {
+      margin-bottom: 0;
+
+      li {
+        color: $black-222;
+        display: inline-block;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+        line-height: 28px;
+        margin-bottom: 3px;
+        position: relative;
+        @media #{$lg-device} {
+          font-size: 11px;
+        }
+
+        &:after {
+          content: "|";
+          margin: 0 10px;
+          @media #{$lg-device} {
+            margin: 0 3px;
+          }
+        }
+
+        &:last-child {
+          &:after {
+            display: none;
+          }
+        }
+
+        a {
+          color: $black-222;
+
+          &:hover {
+            color: $theme-color;
+          }
+        }
+
+        span {}
+      }
+    }
+
+    &:hover {}
+  }
+}
+
+.blog-details-content-wrap {
+  @media #{$md-device} {
+    margin-bottom: 40px;
+  }
+
+  .thumb {
+    img {
+      margin-bottom: 31px;
+      @media #{$md-device} {
+        width: 100%;
+      }
+    }
+  }
+  .content {
+    .title {
+      font-size: 24px;
+      font-weight: $font-weight-normal;
+      margin-bottom: 12px;
+    }
+    .meta {
+      display: flex;
+      margin-bottom: 19px;
+      .post-separator {
+        margin: 0 11px;
+      }
+      li {
+        font-size: 14px;
+        font-weight: $font-weight-normal;
+        a {
+          color: $black;
+          &:hover {
+            color: $theme-color;
+          }
+        }
+      }
+    }
+    p {
+      line-height: 28px;
+      margin: 0 0 16px 0;
+    }
+    blockquote {
+      font-size: 18px;
+      line-height: 30px;
+      font-style: italic;
+      padding: 15px 30px;
+      margin-bottom: 16px;
+      @media #{$xs-device} {
+        font-size: 16px;
+        line-height: 28px;
+        padding: 0;
+      }
+    }
+  }
+  .blog-details-footer {
+    .social-sharing {
+      .social-icon {
+        display: flex;
+        margin: 30px 0px 24px 0;
+        @media #{$xs-device} {
+          display: block;
+        }
+        span {
+          font-size: 15px;
+          font-weight: $font-weight-medium;
+          line-height: 25px;
+          margin-right: 10px;
+        }
+        li {
+          font-size: 15px;
+          line-height: 25px;
+          margin-right: 5px;
+          @media #{$xs-device} {
+            display: inline-block;
+          }
+          a {
+            color: $black;
+            &:hover {
+              color: $theme-color;
+            }
+          }
+        }
+      }
+    }
+    .article-next-previous {
+      justify-content: space-between;
+      display: flex;
+      a {
+        color: $black;
+        font-size: 15px;
+        line-height: 20px;
+        @include transition(all .3s ease-out);
+        i {
+          color: #acacac;
+          margin-right: 10px;
+          line-height: 24px;
+          @include transition(all .3s ease-out);
+        }
+        &.next {
+          i {
+            margin-left: 10px;
+          }
+        }
+        &:hover {
+          color: $theme-color;
+          i {
+            color: $theme-color;
+          }
+        }
+      }
+    }
+  }
+}
