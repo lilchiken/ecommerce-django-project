@@ -113,7 +113,6 @@
                   </div>
                   <div class="mini-cart-footer">
                     <h4>Тотал: <span class="total">{{ cart.total_price }} RUB.</span></h4>
-                    <!-- КНОПКИ УЕЗЖАЮТ!! ЛИБО ПОМЕНЯТЬ CSS ЛИБО ВЫНЕСТИ КНОПКИ В СТАТИКУ -->
                     <div class="cart-btn">
                       <a href="shop-cart.html">View Cart</a>
                       <a href="shop-checkout.html">Checkout</a>
@@ -124,6 +123,12 @@
             </div>
             <div class="header-action d-block d-lg-none text-end">
               <button class="btn-menu" type="button"><i class="zmdi zmdi-menu"></i></button>
+            </div>
+            <div class="header-action">
+              <div class="header">
+                <!-- В этом бутстрапе нет подходящей иконки чекаута :( -->
+                <a href="">Оформить заказ</a>
+              </div>
             </div>
           </div>
         </div>
@@ -143,7 +148,7 @@
         <div class="feature-col col-xl-3 col-md-6 col-12">
           <div class="feature-icon-box">
             <div class="inner-content">
-              <div class="icon-box" data-bg-img="assets/img/icons/1.jpg"></div>
+              <div class="icon-box" data-bg-img="{% static 'img/icons/1.jpg' %}"></div>
               <div class="content">
                 <h3 class="title">Бесплатная доставка</h3>
                 <p>Оплатим доставку Вам за наш счёт! *при заказе от 5000 руб.</p>
@@ -154,7 +159,7 @@
         <div class="feature-col col-xl-3 col-md-6 col-12">
           <div class="feature-icon-box">
             <div class="inner-content">
-              <div class="icon-box" data-bg-img="assets/img/icons/1.jpg"></div>
+              <div class="icon-box" data-bg-img="{% static 'img/icons/1.jpg' %}"></div>
               <div class="content">
                 <h3 class="title">Качество</h3>
                 <p>Мы заботимся о качестве наших продуктов, это одна из главных наших целей!</p>
@@ -165,7 +170,7 @@
         <div class="feature-col col-xl-3 col-md-6 col-12">
           <div class="feature-icon-box">
             <div class="inner-content">
-              <div class="icon-box" data-bg-img="assets/img/icons/1.jpg"></div>
+              <div class="icon-box" data-bg-img="{% static 'img/icons/1.jpg' %}"></div>
               <div class="content">
                 <h3 class="title">3 дня возврата!</h3>
                 <p>Возвращаем деньги, если наши продукты не понравились Вам.</p>
@@ -176,7 +181,7 @@
         <div class="feature-col col-xl-3 col-md-6 col-12">
           <div class="feature-icon-box">
             <div class="inner-content">
-              <div class="icon-box" data-bg-img="assets/img/icons/1.jpg"></div>
+              <div class="icon-box" data-bg-img="{% static 'img/icons/1.jpg' %}"></div>
               <div class="content">
                 <h3 class="title">Онлайн поддержка</h3>
                 <p>Почта, телефон, всё что угодно. Главное напиши.</p>

@@ -1,7 +1,13 @@
 from django.http import HttpRequest
 from django.conf import settings
+from django.db import models
 
-from store.models import Product
+from store.models import (
+    Product,
+    Size,
+    Count,
+    Color
+)
 
 
 class Cart:
@@ -66,3 +72,38 @@ class Cart:
                 id=int(id)
             ).price*item['quantity'] for id, item in self.cart.items()
         )
+    
+
+class ProductOrder(models.Model):
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.CharField(max_length=666)
+    size = models.CharField(max_length=16)
+    color = models.CharField(max_length=16)
+    count = models.IntegerField(default=1)
+
+
+class Order(models.Model):
+    products = models.ForeignKey(
+        ProductOrder,
+        on_delete=models.CASCADE
+    )
+    email = models.EmailField(
+        blank=True,
+        null=True,
+    )
+    phone = models.CharField(
+        blank=False,
+        null=False,
+        max_length=20
+    )
+    adress = models.CharField(
+        blank=False,
+        null=False,
+        max_length=400
+    )
+    customer_name = models.CharField(
+        verbose_name='Имя Фамилия клиента',
+        blank=False,
+        null=False,
+        max_length=100
+    )

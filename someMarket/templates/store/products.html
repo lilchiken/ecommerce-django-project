@@ -58,13 +58,13 @@
                             {% endif %}
                             <div class="product-action">
                                 <div class="addto-wrap">
-                                <a class="add-cart" href="shop-cart.html">
+                                <a class="add-cart" href="{% url 'cart:cart-add' object.id %}">
                                     <span class="icon">
                                     <i class="bardy bardy-shopping-cart"></i>
                                     <i class="hover-icon bardy bardy-shopping-cart"></i>
                                     </span>
                                 </a>
-                                <a class="add-quick-view" href="javascript:void(0);">
+                                <a class="add-quick-view" href="{% url 'store:one-shot' object.id %}">
                                     <span class="icon">
                                     <i class="bardy bardy-quick-view"></i>
                                     <i class="hover-icon bardy bardy-quick-view"></i>
