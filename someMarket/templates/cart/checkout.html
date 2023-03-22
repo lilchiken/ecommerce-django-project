@@ -1,16 +1,14 @@
 {% extends 'main.html' %}
 
 {% block main %}
-  <form method="post" 
-        action="{% url 'cart:checkout' %}" 
+  <form method="post"
+        action="{% url 'cart:checkout' %}"
         enctype="multipart/form-data"
   >
   {% csrf_token %}
-  {% for fo in form %}
-    {{ fo.as_p }}
-  {% endfor %}
+  {{ form.as_p }}
   <button type="submit">
-    checkout
+    confirm
   </button>
   </form>
 {% endblock %}

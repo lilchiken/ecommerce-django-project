@@ -96,47 +96,38 @@
                     <p>{{ object.description }}</p>
                     <p>В наличии: {{ object.count }} шт.</p>
                     <div class="product-select-action">
+                      {% if object.grid_sizes %}
                       <div class="select-item">
                         <div class="select-size-wrap">
                           <span>Размер:</span>
                           <ul>
                             {% for x in object.grid_sizes %}
-                              <li><a href="">{{ x }}</a></li>
-                              <!-- Проверка на выбор -->
-                              <!-- Можно реализовать как редирект на страницу, либо же в баскете заполнять чойсфилды -->
-                              <!-- <li class="active"><a href="#/">s</a></li> -->
+                              <li>{{ x }}</li>
                             {% endfor %}
                           </ul>
                         </div>
                       </div>
+                      {% endif %}
+                      {% if object.grid_colors %}
                       <div class="select-item">
                         <div class="select-color-wrap">
-                          <span>Цвет:</span>
+                          <span>Цвет: </span>
                           <ul>
                             {% for x in object.grid_colors %}
                               <li class="{{ x }}"></li>
-                              <!-- Проверка на выбор -->
-                              <!-- Можно реализовать как редирект на страницу, либо же в баскете заполнять чойсфилды -->
-                              <!-- <li class="active"><a href="#/">s</a></li> -->
                             {% endfor %}
                           </ul>
                         </div>
                       </div>
+                      {% endif %}
                     </div>
+                    {% if object.count != 0 %}
                     <div class="product-action-simple">
-                      <!-- Сделать на отдельной странице -->
-                      <!-- <div class="product-quick-action">
-                        <div class="product-quick-qty">
-                          <span>Количество:</span>
-                          <div class="pro-qty">
-                            <input type="text" id="quantity" title="Quantity" value="1">
-                          </div>
-                        </div>
-                      </div> -->
                       <div class="cart-wishlist-button">
                         <a href="{% url 'cart:cart-add' object.id %}" class="btn-cart">Добавить в корзину</a>
                       </div>
                     </div>
+                    {% endif %}
                   </div>
                   <!--== End Product Info Area ==-->
                 </div>

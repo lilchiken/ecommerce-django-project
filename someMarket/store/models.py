@@ -72,6 +72,10 @@ class Count(models.Model):
         related_name='grid'
     )
 
+    # @property
+    def change_count_on(self, count):
+        self.count = self.count - count
+
 
 class Product(models.Model):
     categorys = models.ManyToManyField(

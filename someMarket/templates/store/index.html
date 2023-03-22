@@ -17,7 +17,7 @@
                       <div class="slider-content">
                         <h5 class="sub-title">{{ x.pub_date }}</h5>
                         <h2 class="title">{{ x }}</h2>
-                        <a class="btn-slider" href="shop.html">Посмотреть</a>
+                        <a class="btn-slider" href="{% url 'store:category' x.slug %}">Посмотреть</a>
                       </div>
                     </div>
                   </div>

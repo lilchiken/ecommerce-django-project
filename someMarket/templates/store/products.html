@@ -58,12 +58,14 @@
                             {% endif %}
                             <div class="product-action">
                                 <div class="addto-wrap">
+                                {% if object.count != 0 %}
                                 <a class="add-cart" href="{% url 'cart:cart-add' object.id %}">
                                     <span class="icon">
                                     <i class="bardy bardy-shopping-cart"></i>
                                     <i class="hover-icon bardy bardy-shopping-cart"></i>
                                     </span>
                                 </a>
+                                {% endif %}
                                 <a class="add-quick-view" href="{% url 'store:one-shot' object.id %}">
                                     <span class="icon">
                                     <i class="bardy bardy-quick-view"></i>

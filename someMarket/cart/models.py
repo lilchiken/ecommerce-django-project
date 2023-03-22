@@ -73,6 +73,9 @@ class Cart:
             ).price*item['quantity'] for id, item in self.cart.items()
         )
     
+    def clear(self):
+        self.cart.clear()
+    
 
 class ProductOrder(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -81,11 +84,14 @@ class ProductOrder(models.Model):
     color = models.CharField(max_length=16)
     count = models.IntegerField(default=1)
 
+    def __str__(self) -> str:
+        return self.product
+
 
 class Order(models.Model):
-    products = models.ForeignKey(
+    products = models.ManyToManyField(
         ProductOrder,
-        on_delete=models.CASCADE
+        # on_delete=models.CASCADE,
     )
     email = models.EmailField(
         blank=True,
@@ -106,4 +112,7 @@ class Order(models.Model):
         blank=False,
         null=False,
         max_length=100
+    )
+    created = models.DateTimeField(
+        auto_now_add=True
     )
