@@ -32,9 +32,10 @@ class ProductAdmin(admin.ModelAdmin):
     )
     empty_value_display = '-'
 
+
 @admin.register(Size)
 class SizeAdmin(admin.ModelAdmin):
-   list_display = ('title',)
+    list_display = ('title',)
 
 
 @admin.register(Color)

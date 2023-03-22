@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+
+{% block main %}
+<main class="main-content" style="justify-content: center;">
+  <div class="container" style="font-size: large;">
+    <h3>Спасибо за заказ</h3><p></p>
+    <h5>ID вашего заказа - {{ order.id }}<h5><p></p>
+    <h5>Продукты вашего заказа:<h5><p></p>
+    {% for product in order.products.all %}
+      {{ product }}<br>
+      Размер - {{ product.size }}<br>
+      Цвет - {{ product.color }}<br>
+      Количество - {{ product.count }}<p></p>
+    {% endfor %}
+    <h5>Доставка сюда - {{ order.adress }}<h5><p></p>
+    <h5>Звонить туда - {{ order.phone }}<h5><p></p>
+    {% if order.email %}
+      <h5>Написать вам сюда - {{ order.email }}<h5><p></p>
+    {% endif %}
+  </div>
+</main>
+{% endblock %}

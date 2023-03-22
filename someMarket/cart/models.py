@@ -2,12 +2,7 @@ from django.http import HttpRequest
 from django.conf import settings
 from django.db import models
 
-from store.models import (
-    Product,
-    Size,
-    Count,
-    Color
-)
+from store.models import Product
 
 
 class Cart:
@@ -18,18 +13,12 @@ class Cart:
             self.session[settings.CART_SESSION_ID] = {}
         self.cart: dict = self.session[settings.CART_SESSION_ID]
 
-
     def __iter__(self):
         products = Product.objects.filter(
             id__in=self.cart.keys()
         )
         for product in products:
             yield product
-
-
-    def __len__(self):
-        return len(self.cart.keys())
-    
 
     def add(self, product_id: int, quantity: int):
         if not self.cart.get(str(product_id)):
@@ -44,27 +33,22 @@ class Cart:
             }
         self.save()
 
-
     def save(self):
         self.session[settings.CART_SESSION_ID] = self.cart
         self.session.modified = True
-
 
     def remove(self, product_id):
         if str(product_id) in self.cart:
             del self.cart[str(product_id)]
             self.save()
 
-
     def count_item(self, product_id):
         return self.cart[str(product_id)]['quantity']
-
 
     def total_count(self):
         return sum(
             [item['quantity'] for item in self.cart.values()]
         )
-
 
     def total_price(self):
         return sum(
@@ -72,10 +56,13 @@ class Cart:
                 id=int(id)
             ).price*item['quantity'] for id, item in self.cart.items()
         )
-    
+
     def clear(self):
         self.cart.clear()
-    
+
+    def __len__(self):
+        return len(self.cart.keys())
+
 
 class ProductOrder(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -90,8 +77,7 @@ class ProductOrder(models.Model):
 
 class Order(models.Model):
     products = models.ManyToManyField(
-        ProductOrder,
-        # on_delete=models.CASCADE,
+        ProductOrder
     )
     email = models.EmailField(
         blank=True,

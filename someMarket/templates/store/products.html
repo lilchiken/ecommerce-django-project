@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block main %}
+{% with request.resolver_match.view_name as view_name %}
 <main class="main-content">
   <section class="product-area product-grid-list-area">
     <div class="container">
@@ -12,19 +13,25 @@
             <div class="show-product-area">
               <p class="show-product">Найдено {{ object_list.count }} подходящих вариантов</p>
             </div>
+            {% if view_name == 'store:all' %}
             <div class="nav-short-area">
               <div class="toolbar-shorter">
                 <label for="SortBy">Отсортировать</label>
-                <form id="SortBy" name="SortBy" action="{% url 'store:all' %}" method="get">
-                  <select id="SortBy" class="form-select" form="SortBy" inputmode="submit" onclick="submit">
-                    <option value="price-ascending" inputmode="submit">Цене, от меньшей к большему</option>
-                    <option value="price-descending">Цене, от большей к меньшей</option>
-                    <option value="created-descending" selected>Дате, от новой до старой</option>
-                    <option value="created-ascending">Дате, от старой до новой</option>
-                  </select>
+                <form id="SortBy"
+                      name="SortBy"
+                      action="{% url view_name %}"
+                      method="get"
+                >
+                  {% for field in sortby %}
+                    {{ field }}
+                  {% endfor %}
+                  <button type="submit">
+                    поиск
+                  </button>
                 </form>
               </div>
             </div>
+            {% endif %}
           </div>
           <div class="product-body-wrap">
             <div class="tab-content" id="nav-tabContent">
@@ -89,4 +96,5 @@
     </div>
   </section>
 </main>
+{% endwith %}
 {% endblock %}

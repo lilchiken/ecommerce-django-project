@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Category(models.Model):
     title = models.CharField(
         verbose_name='Категория',
@@ -29,7 +30,7 @@ class Category(models.Model):
 
     def __str__(self) -> str:
         return self.title
-    
+
 
 class Color(models.Model):
     title = models.CharField(
@@ -72,10 +73,6 @@ class Count(models.Model):
         related_name='grid'
     )
 
-    # @property
-    def change_count_on(self, count):
-        self.count = self.count - count
-
 
 class Product(models.Model):
     categorys = models.ManyToManyField(
@@ -102,7 +99,7 @@ class Product(models.Model):
         blank=True
     )
     image = models.ImageField(
-        verbose_name='Фотография',
+        verbose_name='Основная фотография',
         upload_to='images/products/',
         blank=False,
         null=False,
@@ -136,9 +133,13 @@ class Product(models.Model):
         default=None
     )
 
+    class Meta:
+        ordering = ('-pub_date',)
+        verbose_name = 'Продукты'
+
     def __str__(self) -> str:
         return self.name
-    
+
     @property
     def images(self):
         list_images = [
@@ -152,11 +153,11 @@ class Product(models.Model):
             if not image:
                 list_images.remove(image)
         return list_images
-    
+
     @property
     def images_more_than_one(self):
         return True if self.image_0 else False
-    
+
     @property
     def grid_sizes(self):
         return set(
@@ -165,7 +166,7 @@ class Product(models.Model):
                 grid__count__gt=0
             )
         )
-    
+
     @property
     def grid_colors(self):
         return set(
@@ -174,7 +175,7 @@ class Product(models.Model):
                 grid__count__gt=0
             )
         )
-    
+
     @property
     def count(self):
         return sum(
@@ -185,7 +186,3 @@ class Product(models.Model):
                 flat=True
             )
         )
-    
-    class Meta:
-        ordering = ('-pub_date',)
-        verbose_name = 'Продукты'

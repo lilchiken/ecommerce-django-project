@@ -2,8 +2,19 @@ from django.views.generic import ListView, DetailView
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 
-from store.models import Category
-from store.models import Product
+from store.models import (
+    Category,
+    Product
+)
+from store.forms import SortProds
+
+
+SORTBY_QUERYSET = {
+    'price-ascending': Product.objects.order_by('-price'),
+    'price-descending': Product.objects.order_by('price'),
+    'created-descending': Product.objects.all(),
+    'created-ascending': Product.objects.order_by('pub_date'),
+}
 
 
 class IndexView(ListView):
@@ -17,7 +28,7 @@ class IndexView(ListView):
 class CategoryView(ListView):
     model = Category
     template_name = 'store/products.html'
-    
+
     def get_queryset(self):
         query = self.request.resolver_match.kwargs.get('slug')
         category = get_object_or_404(
@@ -36,16 +47,22 @@ class SearchResultsView(ListView):
         return Product.objects.filter(
                 Q(name__icontains=query) | Q(description__icontains=query)
             ).all()
-    
+
 
 class AllProductsView(ListView):
     model = Product
     template_name = 'store/products.html'
 
     def get_queryset(self):
-        # print(self.request.GET.get('Sort By'))
-        return super().get_queryset()
-    
+        sort = self.request.GET.get('sortby')
+        if not sort:
+            sort = 'created-descending'
+        return SORTBY_QUERYSET.get(sort)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['sortby'] = SortProds(self.request.GET)
+        return context
 
 
 class ProductView(DetailView):

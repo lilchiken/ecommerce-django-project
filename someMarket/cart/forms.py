@@ -1,11 +1,5 @@
 from django import forms
 
-from store.models import (
-    Color,
-    Size,
-    Count,
-    Product
-)
 from cart.models import (
     ProductOrder,
     Order
@@ -18,8 +12,16 @@ class ProductOrderForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['size'].choices = [(choice, choice) for i, choice in enumerate(self.initial.get('size'))]
-        self.fields['color'].choices = [(choice, choice) for i, choice in enumerate(self.initial.get('color'))]
+        self.fields['size'].choices = [
+            (choice, choice) for _, choice in enumerate(
+                self.initial.get('size')
+            )
+        ]
+        self.fields['color'].choices = [
+            (choice, choice) for _, choice in enumerate(
+                self.initial.get('color')
+            )
+        ]
 
     class Meta:
         model = ProductOrder
@@ -37,24 +39,21 @@ class ProductOrderForm(forms.ModelForm):
 
 
 class OrderForm(forms.ModelForm):
-    # products = forms.Field()
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # self.fields['products'].initial = self.data['products']
-        # print(self.data['products'])
-        self.
+        self.fields['products'] = forms.CharField(
+            max_length=666,
+        )
 
-        
     class Meta:
         model = Order
         fields = (
-            # 'products',
+            'products',
             'email',
             'phone',
             'adress',
             'customer_name',
         )
         widgets = {
-            # 'products': forms.TextInput(attrs={'readonly': 'readonly'})
+            'products': forms.TextInput(attrs={'readonly': 'readonly'})
         }

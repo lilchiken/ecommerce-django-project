@@ -68,7 +68,7 @@
               {% draw_categorys %}
               <li class="has-submenu"><a href="{% url 'store:all' %}"><span>Все продукты</span></a>
               </li>
-              <li><a href="contact.html"><span>Связь</span></a></li>
+              <li><a href="mailto:example@gmail.com"><span>Связь</span></a></li>
             </ul>
           </div>
         </div>
@@ -113,10 +113,6 @@
                   </div>
                   <div class="mini-cart-footer">
                     <h4>Тотал: <span class="total">{{ cart.total_price }} RUB.</span></h4>
-                    <div class="cart-btn">
-                      <a href="shop-cart.html">View Cart</a>
-                      <a href="shop-checkout.html">Checkout</a>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -127,7 +123,7 @@
             <div class="header-action">
               <div class="header">
                 <!-- В этом бутстрапе нет подходящей иконки чекаута :( -->
-                <a href="">Оформить заказ</a>
+                <a href="{% url 'cart:checkout-product' %}">Оформить заказ</a>
               </div>
             </div>
           </div>
@@ -201,7 +197,7 @@
             <!--== Start widget Item ==-->
             <div class="widget-item">
               <div class="footer-logo-area">
-                <a href="index.html">
+                <a href="{% url 'store:index' %}">
                   <h1 style="color: aliceblue;">someMarket</h1>
                 </a>
               </div>
@@ -219,8 +215,8 @@
               <h4 class="widget-title">Быстрый доступ</h4>
               <div class="widget-menu-wrap">
                 <ul class="nav-menu">
-                  <li><a href="wishlist.html">Ваша корзина</a></li>
-                  <li><a href="shop.html">Все продукты</a></li>
+                  <li><a href="{% url 'cart:checkout-product' %}">Оформить заказ</a></li>
+                  <li><a href="{% url 'store:all' %}">Все продукты</a></li>
                 </ul>
               </div>
             </div>
@@ -233,8 +229,8 @@
               <h4 class="widget-title">Информация</h4>
               <div class="widget-menu-wrap">
                 <ul class="nav-menu">
-                  <li><a href="#/">Правила & Права</a></li>
-                  <li><a href="shop-shipping-policy.html">Политика продажи</a></li>
+                  <li><a href="">Правила & Права</a></li>
+                  <li><a href="">Политика продажи</a></li>
                 </ul>
               </div>
             </div>
@@ -247,9 +243,9 @@
               <h4 class="widget-title">Следи за нами!</h4>
               <div class="widget-menu-wrap">
                 <ul class="nav-menu">
-                  <li><a href="#/">Instagram</a></li>
-                  <li><a href="#/">YouTube</a></li>
-                  <li><a href="#/">VK</a></li>
+                  <li><a href="">Instagram</a></li>
+                  <li><a href="">YouTube</a></li>
+                  <li><a href="">VK</a></li>
                 </ul>
               </div>
             </div>
