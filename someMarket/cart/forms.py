@@ -43,6 +43,7 @@ class OrderForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['products'] = forms.CharField(
             max_length=666,
+            widget=forms.widgets.HiddenInput()
         )
 
     class Meta:
@@ -54,6 +55,3 @@ class OrderForm(forms.ModelForm):
             'adress',
             'customer_name',
         )
-        widgets = {
-            'products': forms.TextInput(attrs={'readonly': 'readonly'})
-        }
