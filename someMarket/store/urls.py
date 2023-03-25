@@ -11,7 +11,7 @@ urlpatterns = [
         name='index'
     ),
     path(
-        'search/',
+        'search',
         views.SearchResultsView.as_view(),
         name='search'
     ),

@@ -5,7 +5,6 @@ from django.shortcuts import (
     render,
 )
 from django.views.decorators.http import require_POST
-from django.http import HttpRequest
 
 from cart.models import (
     Cart,
@@ -62,7 +61,9 @@ def checkout(request):
 
 
 @require_POST
-def checkout_save(request: HttpRequest):
+def checkout_save(request):
+    """
+    """
     request.POST._mutable = False
     if not request.POST.getlist('products'):
         request.POST._mutable = True
