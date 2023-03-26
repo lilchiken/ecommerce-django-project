@@ -4,8 +4,8 @@
 <main class="main-content" style="justify-content: center;">
   <div class="container" style="font-size: large;">
     <form method="post"
-            action="{% url 'cart:checkout' %}"
-            enctype="multipart/form-data"
+          action="{% url 'cart:checkout-product' %}"
+          enctype="multipart/form-data"
     >
     {% csrf_token %}
     {{ form.as_p }}

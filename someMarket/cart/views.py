@@ -50,6 +50,7 @@ def checkout(request):
             'color': item.grid_colors,
             'count': cart.cart[str(item.id)]['quantity']
         }))
+    
     return render(
         request,
         'cart/ship.html',
