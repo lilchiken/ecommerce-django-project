@@ -7,8 +7,8 @@ from cart.models import (
 
 
 class ProductOrderForm(forms.ModelForm):
-    size = forms.ChoiceField()
-    color = forms.ChoiceField()
+    size = forms.ChoiceField(label='Размер')
+    color = forms.ChoiceField(label='Цвет')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -22,35 +22,39 @@ class ProductOrderForm(forms.ModelForm):
                 self.initial.get('color')
             )
         ]
+        self.fields['count'].label = 'Количество'
 
     class Meta:
         model = ProductOrder
         fields = (
             'product_id',
-            'product',
             'size',
             'color',
             'count'
         )
         widgets = {
-            'product': forms.TextInput(attrs={'readonly': 'readonly'}),
             'product_id': forms.HiddenInput()
         }
 
 
 class OrderForm(forms.ModelForm):
+    email = forms.EmailField(required=False, label='Почта')
+    phone = forms.RegexField(
+        r'^\+?1?\d{11}$',
+        label='Телефон'
+    )
+    customer_name = forms.RegexField(
+        r'^[А-ЯЁ][а-яё]*([-][А-ЯЁ][а-яё]*)?\s[А-ЯЁ][а-яё]*\s[А-ЯЁ][а-яё]*$',
+        label='Фамилия Имя Отчество'
+    )
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['products'] = forms.CharField(
-            max_length=666,
-            widget=forms.widgets.HiddenInput()
-        )
+        self.fields['adress'].label = 'Адрес'
 
     class Meta:
         model = Order
         fields = (
-            'products',
-            'email',
             'phone',
             'adress',
             'customer_name',

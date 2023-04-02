@@ -1,0 +1,6 @@
+{% for product in order %}
+  {{ product.name }} <br>
+  Размер - {{ product.size }}<br>
+  Цвет - {{ product.color }}<br>
+  {{ product.count }} шт. <br>
+{% endfor %}

@@ -1,3 +1,8 @@
+from typing import (
+    List,
+    Dict
+)
+
 from django.http import HttpRequest
 from django.conf import settings
 from django.db import models
@@ -9,9 +14,12 @@ class Cart:
     def __init__(self, request: HttpRequest):
         self.session = request.session
         cart = self.session.get(settings.CART_SESSION_ID)
-        if not cart:
+        order_objs = self.session.get(settings.ORDER_OBJS_SESSION_ID)
+        if (not isinstance(cart, Dict) or not isinstance(order_objs, List)):
             self.session[settings.CART_SESSION_ID] = {}
+            self.session[settings.ORDER_OBJS_SESSION_ID] = []
         self.cart: dict = self.session[settings.CART_SESSION_ID]
+        self.order_objs: List[Dict] = self.session[settings.ORDER_OBJS_SESSION_ID]
 
     def __iter__(self):
         products = Product.objects.filter(
@@ -33,6 +41,10 @@ class Cart:
             }
         self.save()
 
+    def add_order_objs(self, dict_obj: Dict):
+        self.session[settings.ORDER_OBJS_SESSION_ID].append(dict_obj)
+        self.save_orders()
+
     def remove(self, product_id):
         if str(product_id) in self.cart:
             del self.cart[str(product_id)]
@@ -40,6 +52,10 @@ class Cart:
 
     def save(self):
         self.session[settings.CART_SESSION_ID] = self.cart
+        self.session.modified = True
+
+    def save_orders(self):
+        self.session[settings.ORDER_OBJS_SESSION_ID] = self.order_objs
         self.session.modified = True
 
     def count_item(self, product_id):
@@ -60,13 +76,16 @@ class Cart:
     def clear(self):
         self.cart.clear()
 
+    def clear_order_objs(self):
+        self.order_objs.clear()
+        self.save_orders()
+
     def __len__(self):
         return len(self.cart.keys())
 
 
 class ProductOrder(models.Model):
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    product = models.CharField(max_length=666)
+    product_id = models.IntegerField()
     size = models.CharField(max_length=16)
     color = models.CharField(max_length=16)
     count = models.IntegerField(default=1)
@@ -76,8 +95,9 @@ class ProductOrder(models.Model):
 
 
 class Order(models.Model):
-    products = models.ManyToManyField(
-        ProductOrder
+    products = models.JSONField(
+        verbose_name='Продукты',
+        default=None
     )
     email = models.EmailField(
         blank=True,
