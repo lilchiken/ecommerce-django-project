@@ -1,6 +1,11 @@
+from json import loads
+
 from django import template
 
-from store.models import Category
+from store.models import (
+    Category,
+    Product
+)
 from cart.models import Cart
 
 register = template.Library()
@@ -23,3 +28,16 @@ def draw_categorys():
 def count_item(request, product_id):
     cart = Cart(request)
     return {'count_item': cart.count_item(product_id)}
+
+
+@register.inclusion_tag(
+    'template_tags/draw_order.html',
+    name='draw_order'
+)
+def draw_order(order):
+    objs = loads(order.products)
+    for prod in objs:
+        prod['name'] = Product.objects.get(
+            id=prod.get('product_id')
+        ).name
+    return {'order': objs}

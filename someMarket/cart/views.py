@@ -1,16 +1,11 @@
-from ast import literal_eval
+from json import dumps
 
 from django.shortcuts import (
     redirect,
     render,
 )
-from django.views.decorators.http import require_POST
 
-from cart.models import (
-    Cart,
-    ProductOrder,
-    Order
-)
+from cart.models import Cart
 from cart.forms import (
     ProductOrderForm,
     OrderForm
@@ -18,8 +13,6 @@ from cart.forms import (
 from store.models import (
     Product,
     Count,
-    Color,
-    Size
 )
 
 
@@ -40,83 +33,56 @@ def cartremove(request, product_id):
 def checkout(request):
     cart = Cart(request)
     if len(cart) == 0:
-        return redirect('store:index')
-    forms = []
-    for item in cart:
-        forms.append(ProductOrderForm(initial={
-            'product': item,
-            'product_id': item.id,
-            'size': item.grid_sizes,
-            'color': item.grid_colors,
-            'count': cart.cart[str(item.id)]['quantity']
-        }))
-    
+        return redirect('store:all')
+    elif len(cart.order_objs) != 0 and len(cart) == 0:
+        return redirect('cart:checkout')
+    try:
+        id, obj_cart = next(iter(cart.cart.items()))
+        product = Product.objects.get(id=id)
+    except StopIteration:
+        return redirect('cart:checkout')
+    form = ProductOrderForm(initial={
+        'product_id': id,
+        'size': product.grid_sizes,
+        'color': product.grid_colors,
+        'count': obj_cart['quantity']
+    }, data=request.POST or None)
+    if form.is_valid():
+        data = form.cleaned_data
+        cart.add_order_objs(data)
+        cart.remove(id)
+        if len(cart.cart) != 0:
+            return checkout(request)
+        return redirect('cart:checkout')
     return render(
         request,
         'cart/ship.html',
         {
             'cart': cart,
-            'form': forms
+            'form': form
         }
     )
 
 
-@require_POST
 def checkout_save(request):
     """
     """
-    request.POST._mutable = False
-    if not request.POST.getlist('products'):
-        request.POST._mutable = True
-        request.POST.setlistdefault('products')
-        request.POST.appendlist('products', {'ids': []})
-        for i, val in enumerate(request.POST.getlist('product_id')):
-            product = Product.objects.get(id=int(val))
-            size = Size.objects.get(title=request.POST.getlist('size')[i])
-            color = Color.objects.get(title=request.POST.getlist('color')[i])
-            prod_obj = ProductOrder.objects.create(
-                product_id=product,
-                product=request.POST.getlist('product')[i],
-                size=size.title,
-                color=color.title,
-                count=int(request.POST.getlist('count')[i])
-            )
-            request.POST.getlist('products')[0].get('ids').append(
-                str(prod_obj.id)
-            )
-    form = OrderForm(
-        data=request.POST,
-    )
+    cart = Cart(request)
+    if len(cart.order_objs) == 0:
+        return redirect('store:all')
+    form = OrderForm(data=request.POST or None)
     if form.is_valid():
-        ids = literal_eval(request.POST.getlist('products')[0])['ids']
-        prods = ProductOrder.objects.filter(
-            id__in=[int(id) for id in ids]
-        )
-        order = Order.objects.filter(
-            email=form.cleaned_data['email'],
-            phone=form.cleaned_data['phone'],
-            adress=form.cleaned_data['adress'],
-            customer_name=form.cleaned_data['customer_name']
-        ).last()
-        if not order.products.filter(
-            id__in=[int(id) for id in ids]
-        ):
-            order = Order.objects.create(
-                email=form.cleaned_data['email'],
-                phone=form.cleaned_data['phone'],
-                adress=form.cleaned_data['adress'],
-                customer_name=form.cleaned_data['customer_name']
+        order = form.save(commit=False)
+        order.products = dumps(cart.order_objs)
+        order.save()
+        for prod in cart.order_objs:
+            count_obj = Count.objects.filter(
+                product=prod.get('product_id'),
+                size__title=prod.get('size'),
+                color__title=prod.get('color')
             )
-            order.products.set(prods)
-            cart = Cart(request)
-            cart.clear()
-            for prod in prods:
-                count_obj = Count.objects.filter(
-                    product=prod.product_id,
-                    size__title=prod.size,
-                    color__title=prod.color
-                )
-                new_count = count_obj.first().count - prod.count
-                count_obj.update(count=new_count)
+            new_count = count_obj.first().count - prod.get('count')
+            count_obj.update(count=new_count)
+        cart.clear_order_objs()
         return render(request, 'cart/thanks.html', {'order': order})
     return render(request, 'cart/checkout.html', {'form': form})

@@ -4,13 +4,12 @@
 <main class="main-content" style="justify-content: center;">
   <div class="container" style="font-size: large;">
     <form method="post" 
-          action="{% url 'cart:checkout' %}" 
+          action="{% url 'cart:checkout-product' %}" 
           enctype="multipart/form-data"
     >
+    {{ request.session.order_objs }}
     {% csrf_token %}
-    {% for fo in form %}
-        {{ fo.as_p }}
-    {% endfor %}
+    {{ form.as_p }}
     <button type="submit">
         checkout
     </button>

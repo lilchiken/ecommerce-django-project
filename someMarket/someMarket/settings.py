@@ -99,3 +99,4 @@ MEDIA_ROOT = BASE_DIR.parent / 'static/media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CART_SESSION_ID = 'cart'
+ORDER_OBJS_SESSION_ID = 'order_objs'

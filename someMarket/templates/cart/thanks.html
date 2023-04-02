@@ -1,4 +1,5 @@
 {% extends 'main.html' %}
+{% load template_tags %}
 
 {% block main %}
 <main class="main-content" style="justify-content: center;">
@@ -6,12 +7,7 @@
     <h3>Спасибо за заказ</h3><p></p>
     <h5>ID вашего заказа - {{ order.id }}<h5><p></p>
     <h5>Продукты вашего заказа:<h5><p></p>
-    {% for product in order.products.all %}
-      {{ product }}<br>
-      Размер - {{ product.size }}<br>
-      Цвет - {{ product.color }}<br>
-      Количество - {{ product.count }}<p></p>
-    {% endfor %}
+      {% draw_order order %}
     <h5>Доставка сюда - {{ order.adress }}<h5><p></p>
     <h5>Звонить туда - {{ order.phone }}<h5><p></p>
     {% if order.email %}
