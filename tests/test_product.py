@@ -4,7 +4,7 @@ from django.test import Client
 from store.views import SORTBY_QUERYSET
 
 
-class TestProductView:
+class TestSearchView:
 
     @pytest.mark.django_db(transaction=True)
     def test_search_view(
@@ -46,6 +46,8 @@ class TestProductView:
                 'View "search" выдаёт неожиданные продукты'
             )
 
+
+class TestAllProductsView:
 
     @pytest.mark.django_db(transaction=True)
     def test_allproducts_view(
@@ -107,6 +109,8 @@ class TestProductView:
 
             assert objects_sorted == data
     
+
+class TestProductView:
 
     @pytest.mark.django_db(transaction=True)
     def test_product_view(

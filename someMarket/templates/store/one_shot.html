@@ -17,40 +17,22 @@
                     <div class="product-thumb">
                       <div class="swiper-container single-product-thumb-slider">
                         <div class="swiper-wrapper">
-                        {% if object.images_more_than_one %}
-                          {% if object.images|length == 3 %}
-                            {% for image in object.images %}
-                              {% if forloop.last %}
-                              {% else %}
-                                <div class="swiper-slide">
-                                  <div class="zoom zoom-hover">
-                                    <a class="lightbox-image" data-fancybox="gallery" href="{% static 'media/' %}{{ image }}">
-                                      <img src="{% static 'media/' %}{{ image }}" alt="Image-HasTech">
-                                    </a>
-                                  </div>
-                                </div>
-                              {% endif %}
-                            {% endfor %}
-                          {% else %}
-                            {% for image in object.images %}
-                              <div class="swiper-slide">
-                                <div class="zoom zoom-hover">
-                                  <a class="lightbox-image" data-fancybox="gallery" href="{% static 'media/' %}{{ image }}">
-                                    <img src="{% static 'media/' %}{{ image }}" alt="Image-HasTech">
-                                  </a>
-                                </div>
-                              </div>
-                            {% endfor %}
-                          {% endif %}
-                        {% else %}
                           <div class="swiper-slide">
                             <div class="zoom zoom-hover">
-                              <a class="lightbox-image" data-fancybox="gallery" href="{% static 'media/' %}{{ object.image }}">
-                                <img src="{% static 'media/' %}{{ object.image }}" alt="Image-HasTech">
+                              <a class="lightbox-image" data-fancybox="gallery" href="{% static 'media/' %}{{ object.main_image }}">
+                                <img src="{% static 'media/' %}{{ object.main_image }}" alt="Image-HasTech">
                               </a>
                             </div>
                           </div>
-                        {% endif %}
+                          {% for image in object.other_images.all %}
+                            <div class="swiper-slide">
+                              <div class="zoom zoom-hover">
+                                <a class="lightbox-image" data-fancybox="gallery" href="{% static 'media/' %}{{ image.image }}">
+                                  <img src="{% static 'media/' %}{{ image.image }}" alt="Image-HasTech">
+                                </a>
+                              </div>
+                            </div>
+                          {% endfor %}
                         </div>
                       </div>
                     </div>
@@ -59,24 +41,14 @@
                     <!--== Start Product Nav Area ==-->
                     <div class="swiper-container single-product-nav-slider product-nav">
                       <div class="swiper-wrapper">
-                        {% if object.images_more_than_one %}
-                          {% if object.images|length == 3 %}
-                            {% for image in object.images %}
-                              {% if forloop.last %}
-                              {% else %}
-                                <div class="swiper-slide">
-                                  <img src="{% static 'media/' %}{{ image }}" alt="Image-HasTech">
-                                </div>
-                              {% endif %}
-                            {% endfor %}
-                          {% else %}
-                            {% for image in object.images %}
-                              <div class="swiper-slide">
-                                <img src="{% static 'media/' %}{{ image }}" alt="Image-HasTech">
-                              </div>
-                            {% endfor %}
-                          {% endif %}
-                        {% endif %}
+                        <div class="swiper-slide">
+                          <img src="{% static 'media/' %}{{ object.main_image }}" alt="Image-HasTech">
+                        </div>
+                        {% for image in object.other_images.all %}
+                          <div class="swiper-slide">
+                            <img src="{% static 'media/' %}{{ image.image }}" alt="Image-HasTech">
+                          </div>
+                        {% endfor %}
                       </div>
 
                       <!--== Add Swiper navigation Buttons ==-->

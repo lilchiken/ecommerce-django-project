@@ -18,7 +18,7 @@ class Cart:
         if (not isinstance(cart, Dict) or not isinstance(order_objs, List)):
             self.session[settings.CART_SESSION_ID] = {}
             self.session[settings.ORDER_OBJS_SESSION_ID] = []
-        self.cart: dict = self.session[settings.CART_SESSION_ID]
+        self.cart: Dict = self.session[settings.CART_SESSION_ID]
         self.order_objs: List[Dict] = self.session[settings.ORDER_OBJS_SESSION_ID]
 
     def __iter__(self):
@@ -85,6 +85,8 @@ class Cart:
 
 
 class ProductOrder(models.Model):
+    """Эта модель используется для формы."""
+
     product_id = models.IntegerField()
     size = models.CharField(max_length=16)
     color = models.CharField(max_length=16)
@@ -95,6 +97,8 @@ class ProductOrder(models.Model):
 
 
 class Order(models.Model):
+    """Модель заказов, используется в API."""
+
     products = models.JSONField(
         verbose_name='Продукты',
         default=None
@@ -104,11 +108,13 @@ class Order(models.Model):
         null=True,
     )
     phone = models.CharField(
+        'Телефон',
         blank=False,
         null=False,
         max_length=20
     )
     adress = models.CharField(
+        'Адрес',
         blank=False,
         null=False,
         max_length=400
@@ -120,5 +126,6 @@ class Order(models.Model):
         max_length=100
     )
     created = models.DateTimeField(
+        'Время создания заказа',
         auto_now_add=True
     )

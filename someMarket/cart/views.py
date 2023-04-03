@@ -51,8 +51,6 @@ def checkout(request):
         data = form.cleaned_data
         cart.add_order_objs(data)
         cart.remove(id)
-        if len(cart.cart) != 0:
-            return checkout(request)
         return redirect('cart:checkout')
     return render(
         request,

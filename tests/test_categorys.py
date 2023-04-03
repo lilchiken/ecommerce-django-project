@@ -2,7 +2,7 @@ import pytest
 from django.test import Client
 
 
-class TestCategorysView:
+class TestMainView:
 
     @pytest.mark.django_db(transaction=True)
     def test_main_view(
@@ -33,6 +33,8 @@ class TestCategorysView:
                 'с картинкой!'
             )
 
+
+class TestCategoryView:
 
     @pytest.mark.django_db(transaction=True)
     def test_category_view(

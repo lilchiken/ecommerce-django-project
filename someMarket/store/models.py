@@ -74,6 +74,23 @@ class Count(models.Model):
     )
 
 
+class ImagesProduct(models.Model):
+    image = models.ImageField(
+        verbose_name='Фотография',
+        upload_to='images/products/',
+        blank=True,
+        null=True,
+        default=None
+    )
+    product = models.ForeignKey(
+        'Product',
+        on_delete=models.CASCADE,
+        related_name='other_images',
+        blank=True,
+        null=True
+    )
+
+
 class Product(models.Model):
     categorys = models.ManyToManyField(
         Category,
@@ -98,39 +115,11 @@ class Product(models.Model):
         auto_now_add=True,
         blank=True
     )
-    image = models.ImageField(
+    main_image = models.ImageField(
         verbose_name='Основная фотография',
         upload_to='images/products/',
         blank=False,
         null=False,
-    )
-    image_0 = models.ImageField(
-        verbose_name='Фотография',
-        upload_to='images/products/',
-        blank=True,
-        null=True,
-        default=None
-    )
-    image_1 = models.ImageField(
-        verbose_name='Фотография',
-        upload_to='images/products/',
-        blank=True,
-        null=True,
-        default=None
-    )
-    image_2 = models.ImageField(
-        verbose_name='Фотография',
-        upload_to='images/products/',
-        blank=True,
-        null=True,
-        default=None
-    )
-    image_3 = models.ImageField(
-        verbose_name='Фотография',
-        upload_to='images/products/',
-        blank=True,
-        null=True,
-        default=None
     )
 
     class Meta:
@@ -139,24 +128,6 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return self.name
-
-    @property
-    def images(self):
-        list_images = [
-            self.image,
-            self.image_0,
-            self.image_1,
-            self.image_2,
-            self.image_3
-        ]
-        for image in list_images:
-            if not image:
-                list_images.remove(image)
-        return list_images
-
-    @property
-    def images_more_than_one(self):
-        return True if self.image_0 else False
 
     @property
     def grid_sizes(self):

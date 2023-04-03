@@ -42,8 +42,8 @@
                     <div class="product-item product-item-list">
                       <div class="inner-content">
                         <div class="product-thumb">
-                          <a href="shop-single.html">
-                            <img class="w-100" src="{% static 'media/' %}{{ object.image }}" alt="Image-HasTech">
+                          <a href="{% url 'store:one-shot' object.id %}">
+                            <img class="w-100" src="{% static 'media/' %}{{ object.main_image }}" alt="Image-HasTech">
                           </a>
                         </div>
                         <div class="product-desc">
