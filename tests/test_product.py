@@ -15,6 +15,8 @@ class TestSearchView:
         product,
         another_product,
     ):
+        """Проверка view "store:search" ."""
+
         urls = [
             {
                 'url': 'search?q=prdct',
@@ -58,6 +60,8 @@ class TestAllProductsView:
         product,
         another_product,
     ):
+        """Проверка view "store:all" ."""
+
         url = 'all/'
 
         try:
@@ -88,6 +92,8 @@ class TestAllProductsView:
         product,
         another_product,
     ):
+        """Проверка view "store:all" с SORTBY_QUERYSET."""
+
         url = 'all/'
 
         for key, data in SORTBY_QUERYSET.items():

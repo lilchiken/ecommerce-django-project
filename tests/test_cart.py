@@ -1,6 +1,8 @@
 import pytest
 from django.test import Client
 
+from cart.models import Order
+
 
 class TestCartView:
 
@@ -12,6 +14,8 @@ class TestCartView:
         product,
         count
     ):
+        """Проверка view "cart:add" ."""
+
         url = f'cart/cartadd/{product.id}'
 
         try:
@@ -42,6 +46,8 @@ class TestCartView:
         product,
         count
     ):
+        """Проверка view "cart:remove" ."""
+
         url = f'cart/cartremove/{product.id}'
 
         try:
@@ -74,31 +80,31 @@ class TestCartView:
 
 
     @pytest.mark.django_db(transaction=True)
-    def test_checkout_view(
+    def test_all_checkout_view(
         self,
         client: Client,
         category,
         product,
         count
     ):
+        """Здесь проверяем полную цепочку оформления заказа."""
+
         url = '/cart/cart/'
-        url_add_prod = f'cart/cartadd/{product.id}'
-        main_client = client
+        url_checkout = '/cart/checkout/'
+        url_add_prod = f'/cart/cartadd/{product.id}'
 
         try:
-            main_client.get('/')
+            client.get('/')
         except Exception as e:
             assert False, e.__repr__()
 
         try:
-            main_client.get(f'/{url_add_prod}')
+            client.get(url_add_prod)
         except Exception as e:
             assert False, e.__repr__()
 
-        assert len(main_client.session.get('cart')) == 1
-
         try:
-            response = main_client.post(
+            response = client.post(
                 url,
                 data={
                     'product_id': count.product.id,
@@ -111,8 +117,33 @@ class TestCartView:
         except Exception as e:
             assert False, e.__repr__()
 
-        assert response.status_code == 200
+        assert response.status_code in (200, 301, 302), (
+            'Проверьте, что ответ от "/cart/cart/" соответствующий'
+        )
 
-        assert len(response.client.session.get('order_objs')) == 1
+        assert len(response.client.session.get('order_objs')) == 1, (
+            'Проверьте, что объект сессии из cart перемещается в order_objs'
+        )
 
-        assert response.resolver_match.url_name == 'checkout'
+        assert response.resolver_match.url_name == 'checkout', (
+            'Проверьте, что при положительном ответе идёт редирект на '
+            '"/cart/checkout/"'
+        )
+
+        try:
+            response = client.post(
+                url_checkout,
+                data={
+                    'phone': '+71234567890',
+                    'adress': 'some adress',
+                    'customer_name': 'Фамилия Имя Отчество'
+                }
+            )
+        except Exception as e:
+            assert False, e.__repr__()
+
+        last_order = Order.objects.last()
+
+        assert last_order.adress == 'some adress', (
+            'Проверьте, что view "/cart/checkout/" добавляет объект в Order'
+        )

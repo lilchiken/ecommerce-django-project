@@ -11,6 +11,8 @@ class TestMainView:
         category,
         another_category
     ):
+        """Проверка view "store:index" ."""
+
         url = ''
         try:
             response = client.get(f'{url}/')
@@ -45,6 +47,8 @@ class TestCategoryView:
         product,
         another_product
     ):
+        """Проверка view "store:category" ."""
+
         urls = [
             {
                 'url': f'category/{category.slug}',
