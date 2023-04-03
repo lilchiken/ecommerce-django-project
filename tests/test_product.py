@@ -126,6 +126,8 @@ class TestProductView:
         product,
         count
     ):
+        """Проверка view "store:one-shot" ."""
+
         url = f'product/{product.id}'
 
         try:
@@ -134,31 +136,35 @@ class TestProductView:
             assert False, e.__repr__()
 
         assert response.status_code == 200, (
-            'Статус по view "product" не тот, что ожидался, '
+            'Статус по view "one-shot" не тот, что ожидался, '
             f'{response.status_code}'
         )
 
         object = response.context.get('object')
 
         assert object == product, (
-            'Ожидаемый объект view "Product" не является им'
+            'Ожидаемый объект view "one-shot" не является им'
         )
 
         assert object == count.product, (
-            'Связанный объект Count в view "Product" не является им'
+            'Связанный объект Count в view "one-shot" не является им'
         )
         
         assert object.count >= count.count, (
-            'Параметр count связанного объекта Count в view "Product"',
+            'Параметр count связанного объекта Count в view "one-shot"',
             ' меньше, чем предполагается'
         )
 
         assert count.size in object.grid_sizes, (
             'Размерная сетка не включает связанный объект Count '
-            'в view "Product"'
+            'в view "one-shot"'
         )
 
         assert count.color in object.grid_colors, (
             'Сетка цветов не включает связанный объект Count '
-            'в view "Product"'
+            'в view "one-shot"'
+        )
+
+        assert response.context.get('other_prods'), (
+            'Не отображается блок с другими продуктами view "one-shot"'
         )

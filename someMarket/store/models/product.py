@@ -1,77 +1,11 @@
 from django.db import models
 
-
-class Category(models.Model):
-    title = models.CharField(
-        verbose_name='Категория',
-        unique=True,
-        max_length=64
-    )
-    slug = models.SlugField(
-        unique=True,
-        max_length=64,
-        auto_created=True
-    )
-    pub_date = models.DateField(
-        verbose_name='Дата создания',
-        blank=True,
-        auto_now_add=True
-    )
-    image = models.ImageField(
-        verbose_name='Фотография',
-        upload_to='images/categorys/',
-        blank=True,
-        null=True
-    )
-
-    class Meta:
-        ordering = ('-pub_date',)
-        verbose_name = 'Категории'
-
-    def __str__(self) -> str:
-        return self.title
-
-
-class Color(models.Model):
-    title = models.CharField(
-        'Название цвета',
-        max_length=32
-    )
-
-    def __str__(self) -> str:
-        return self.title
-
-
-class Size(models.Model):
-    title = models.CharField(
-        'Название размера',
-        max_length=32
-    )
-
-    def __str__(self) -> str:
-        return self.title
-
-
-class Count(models.Model):
-    count = models.IntegerField(
-        verbose_name='Количество продукта',
-        editable=True
-    )
-    color = models.ForeignKey(
-        Color,
-        on_delete=models.CASCADE,
-        related_name='grid'
-    )
-    size = models.ForeignKey(
-        Size,
-        on_delete=models.CASCADE,
-        related_name='grid'
-    )
-    product = models.ForeignKey(
-        'Product',
-        on_delete=models.CASCADE,
-        related_name='grid'
-    )
+from store.models import (
+    Category,
+    Size,
+    Color,
+    Count
+)
 
 
 class ImagesProduct(models.Model):

@@ -7,6 +7,29 @@ from cart.models import Order
 class TestCartView:
 
     @pytest.mark.django_db(transaction=True)
+    def test_cart_create(
+        self,
+        client: Client
+    ):
+        """Проверка создания кастомной сессии."""
+
+        url = '/'
+
+        try:
+            response = client.get(url)
+        except Exception as e:
+            assert False, e.__repr__()
+
+        assert isinstance(response.client.session.get('cart'), dict), (
+            'Проверьте, что в сессии юзера создаётся корзина'
+        )
+
+        assert isinstance(response.client.session.get('order_objs'), list), (
+            'Проверьте, что в сессии юзера создаётся order_objs'
+        )
+
+
+    @pytest.mark.django_db(transaction=True)
     def test_cartadd_view(
         self,
         client: Client,

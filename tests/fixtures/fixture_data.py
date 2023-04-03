@@ -61,7 +61,7 @@ def product():
     prod = Product.objects.create(
         name='test prdct',
         price=100.01,
-        image=image
+        main_image=image
     )
     category = Category.objects.get(title='test_ctgr')
     prod.categorys.add(category)
@@ -90,7 +90,7 @@ def another_product():
     prod = Product.objects.create(
         name='test nthr prdct',
         price=1.01,
-        image=image
+        main_image=image
     )
     category = Category.objects.get(title='test_nthr_ctgr')
     prod.categorys.add(category)
