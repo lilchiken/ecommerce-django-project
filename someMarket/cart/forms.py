@@ -7,10 +7,18 @@ from cart.models import (
 
 
 class ProductOrderForm(forms.ModelForm):
+    """Форма, построенная на модели ProductOrder, используется для
+    оформления продуктов заказа из корзины сессии юзера.
+    """
+
     size = forms.ChoiceField(label='Размер')
     color = forms.ChoiceField(label='Цвет')
 
     def __init__(self, *args, **kwargs):
+        """Здесь, из стандартных CharField'ов полей 'size' и
+        'color' делаем ChoiceField.
+        """
+
         super().__init__(*args, **kwargs)
         self.fields['size'].choices = [
             (choice, choice) for _, choice in enumerate(
@@ -38,6 +46,10 @@ class ProductOrderForm(forms.ModelForm):
 
 
 class OrderForm(forms.ModelForm):
+    """Форма, для оформления заказов, кастомизируем поля
+    'phone' и 'customer_name' .
+    """
+
     email = forms.EmailField(required=False, label='Почта')
     phone = forms.RegexField(
         r'^\+?1?\d{11}$',

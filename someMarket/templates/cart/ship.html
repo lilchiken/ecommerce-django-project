@@ -7,7 +7,6 @@
           action="{% url 'cart:checkout-product' %}" 
           enctype="multipart/form-data"
     >
-    {{ request.session.order_objs }}
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">

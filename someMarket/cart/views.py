@@ -17,6 +17,8 @@ from store.models import (
 
 
 def cartadd(request, product_id):
+    """Вью функция для добавления продукта в корзину."""
+
     if Product.objects.get(id=product_id).count == 0:
         return redirect('store:all')
     cart = Cart(request)
@@ -25,12 +27,16 @@ def cartadd(request, product_id):
 
 
 def cartremove(request, product_id):
+    """Вью функция для удаления продукта из корзины."""
+
     cart = Cart(request)
     cart.remove(product_id)
     return redirect('store:all')
 
 
 def checkout(request):
+    """Вью функция для оформления объектов заказа из корзины юзера."""
+
     cart = Cart(request)
     if len(cart) == 0:
         return redirect('store:all')
@@ -63,8 +69,8 @@ def checkout(request):
 
 
 def checkout_save(request):
-    """
-    """
+    """Вью функция для оформления самого заказа."""
+
     cart = Cart(request)
     if len(cart.order_objs) == 0:
         return redirect('store:all')

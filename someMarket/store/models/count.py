@@ -1,27 +1,23 @@
 from django.db import models
 
-
-class Color(models.Model):
-    title = models.CharField(
-        'Название цвета',
-        max_length=32
-    )
-
-    def __str__(self) -> str:
-        return self.title
+from core.models import TitleStrModel
 
 
-class Size(models.Model):
-    title = models.CharField(
-        'Название размера',
-        max_length=32
-    )
+class Color(TitleStrModel):
+    class Meta:
+        verbose_name = 'Цвет'
+        verbose_name_plural = 'Цвета'
 
-    def __str__(self) -> str:
-        return self.title
+
+class Size(TitleStrModel):
+    class Meta:
+        verbose_name = 'Размер'
+        verbose_name_plural = 'Размеры'
 
 
 class Count(models.Model):
+    """Модель определённого вида продукта."""
+
     count = models.IntegerField(
         verbose_name='Количество продукта',
         editable=True

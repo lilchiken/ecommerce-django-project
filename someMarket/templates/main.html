@@ -99,7 +99,7 @@
                     {% for item in cart %}
                       <div class="cart-item">
                         <div class="thumb">
-                          <a href="{% url 'store:one-shot' item.id %}"><img class="w-100" src="{% static 'media/' %}{{ item.image }}" alt="Image-HasTech"></a>
+                          <a href="{% url 'store:one-shot' item.id %}"><img class="w-100" src="{% static 'media/' %}{{ item.main_image }}" alt="Image-HasTech"></a>
                           <a class="remove" href="{% url 'cart:cart-remove' item.id %}"><i class="fa fa-trash-o"></i></a>
                         </div>
                         <div class="content">

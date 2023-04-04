@@ -1,20 +1,18 @@
+from ast import literal_eval
+
 from rest_framework import serializers
 
-from cart.models import (
-    Order,
-    ProductOrder
-)
-
-
-class ProductOrderSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ProductOrder
-        fields = '__all__'
+from cart.models import Order
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    products = ProductOrderSerializer(many=True)
+    """Сериализатор для модели Order."""
+
+    products = serializers.SerializerMethodField('get_products')
 
     class Meta:
         model = Order
         fields = '__all__'
+
+    def get_products(self, obj):
+        return literal_eval(obj.products)

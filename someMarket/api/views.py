@@ -10,7 +10,15 @@ from cart.models import Order
 
 
 class OrderViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Order.objects.filter(
-        created__gte=datetime.now() - timedelta(hours=1)
-    )
+    """Вьюсет для модели Order."""
+
     serializer_class = OrderSerializer
+
+    def get_queryset(self):
+        """Определение кверисета для разных запросов."""
+
+        if self.kwargs.get('pk'):
+            return Order.objects.filter(id=self.kwargs.get('pk'))
+        return Order.objects.filter(
+            created__gte=datetime.now() - timedelta(hours=1)
+        )

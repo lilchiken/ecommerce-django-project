@@ -7,7 +7,7 @@ from rest_framework.routers import DefaultRouter
 from api.views import OrderViewSet
 
 api_v1 = DefaultRouter()
-api_v1.register('order', OrderViewSet)
+api_v1.register('order', OrderViewSet, 'order')
 
 urlpatterns = [
     path('v1/', include(api_v1.urls)),

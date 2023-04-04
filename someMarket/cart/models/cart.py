@@ -8,8 +8,18 @@ from django.conf import settings
 
 from store.models import Product
 
+
 class Cart:
+    """Кастомное расширение джанго-сессии.
+    cart - корзина сессии.
+    order_objs - продукты заказа.
+    """
+
     def __init__(self, request: HttpRequest):
+        """Здесь мы создаём упомянутые выше атрибуты,
+        если они не созданы.
+        """
+
         self.session = request.session
         cart = self.session.get(settings.CART_SESSION_ID)
         order_objs = self.session.get(settings.ORDER_OBJS_SESSION_ID)
@@ -20,6 +30,8 @@ class Cart:
         self.order_objs: List[Dict] = self.session[settings.ORDER_OBJS_SESSION_ID]
 
     def __iter__(self):
+        """Здесь мы отображаем корзину именно экземплярами модели Product."""
+
         products = Product.objects.filter(
             id__in=self.cart.keys()
         )

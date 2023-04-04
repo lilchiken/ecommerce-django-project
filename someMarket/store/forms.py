@@ -4,6 +4,8 @@ from store.models import Product
 
 
 class SortProds(forms.ModelForm):
+    """Форма для сортировки продуктов."""
+
     sortby = forms.ChoiceField(required=False)
 
     def __init__(self, *args, **kwargs):

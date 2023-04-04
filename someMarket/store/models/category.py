@@ -2,6 +2,10 @@ from django.db import models
 
 
 class Category(models.Model):
+    """Модель категорий продукта. Если не загрузить фото, то
+    категория не будет отражаться на мейн странице !!!
+    """
+
     title = models.CharField(
         verbose_name='Категория',
         unique=True,

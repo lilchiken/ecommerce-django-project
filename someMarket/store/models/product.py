@@ -65,6 +65,8 @@ class Product(models.Model):
 
     @property
     def grid_sizes(self):
+        """Размерная сетка."""
+
         return set(
             Size.objects.filter(
                 grid__product_id=self.pk,
@@ -74,6 +76,8 @@ class Product(models.Model):
 
     @property
     def grid_colors(self):
+        """Цветовая сетка."""
+
         return set(
             Color.objects.filter(
                 grid__product_id=self.pk,
@@ -83,6 +87,8 @@ class Product(models.Model):
 
     @property
     def count(self):
+        """Суммарное кол-во продукта."""
+
         return sum(
             Count.objects.filter(
                 product_id=self.pk

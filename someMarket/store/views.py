@@ -17,8 +17,8 @@ CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 SORTBY_QUERYSET = {
     'price-ascending': Product.objects.order_by('-price'),
     'price-descending': Product.objects.order_by('price'),
-    'created-descending': Product.objects.all(),
-    'created-ascending': Product.objects.order_by('pub_date'),
+    'created-descending': Product.objects.order_by('pub_date'),
+    'created-ascending': Product.objects.all()
 }
 
 
@@ -27,7 +27,7 @@ class IndexView(ListView):
     template_name = 'store/index.html'
 
     def get_queryset(self):
-        """Чтобы корректно отображалсь мейн страница, 
+        """Чтобы корректно отображалсь мейн страница,
         необходимо брать категории, у которых есть фотография.
         """
 
@@ -43,7 +43,7 @@ class CategoryView(ListView):
     template_name = 'store/products.html'
 
     def get_queryset(self):
-        """Получаем кверисет продуктов по категории"""
+        """Получаем кверисет продуктов по категории."""
 
         query = self.request.resolver_match.kwargs.get('slug')
         category = get_object_or_404(
