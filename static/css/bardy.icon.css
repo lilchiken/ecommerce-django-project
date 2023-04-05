@@ -1,0 +1,62 @@
+   
+@font-face {
+  font-family: 'bardy';
+  src:  url('../fonts/bardy.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.bardy {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'bardy';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bardy-quick-view:before {
+  content: "\e900";
+}
+.bardy-search:before {
+  content: "\e901";
+}
+.bardy-cancel:before {
+  content: "\e902";
+}
+.bardy-shopping-cart:before {
+  content: "\e903";
+}
+.bardy-shopping-bag:before {
+  content: "\e904";
+}
+.bardy-wishlist:before {
+  content: "\e905";
+}
+.bardy-wishlist-fill:before {
+  content: "\e906";
+}
+.bardy-compare:before {
+  content: "\e907";
+}
+.bardy-free-shipping:before {
+  content: "\e908";
+}
+.bardy-quality:before {
+  content: "\e909";
+}
+.bardy-return:before {
+  content: "\e90a";
+}
+.bardy-support:before {
+  content: "\e90b";
+}
+.bardy-user:before {
+  content: "\e90c";
+}
