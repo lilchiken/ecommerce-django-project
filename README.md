@@ -13,6 +13,7 @@
 - Testing with Pytest
 - Swagger UI for API documentation and testing
 - Easy to manage admin panel
+- More than half of the views are written in generics.
 
 ----
 
