@@ -69,7 +69,7 @@ $ source .venv/bin/activate
 ----
 ## Next Steps
 
-- Check Pytest local
+- Check Pytest local.
 - Develop payment methods that you want to see in the project.
 - Add [gunicorn](https://pypi.org/project/gunicorn/) or other web server before production.
 - Configure permissions in API viewset.
