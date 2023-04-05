@@ -9,7 +9,7 @@
 - No users, only sessions
 - Caching with [redis](https://redis.io)
 - Simple API for checking commerce stats
-- Styling with [Bootstrap v5](https://bootstraptema.ru/stuff/templates_bootstrap/shop/diana/7-1-0-4659)
+- Styling with Bootstrap v5 (static files are in other branch)
 - Testing with Pytest
 - Swagger UI for API documentation and testing
 - Easy to manage admin panel
@@ -29,6 +29,7 @@
 
 ## 📖 Installation
 someMarket can be installed via pip. To start, clone the repo to your local computer and change into the proper directory.  
+Remember, static files are in the branch 'with_static_files'. If you want to use it, just pull this branch to your local machine.  
 !!! Before start project you need to install Redis, see how you can do it [here](https://redis.io/docs/getting-started/) !!! (or disable caching in project)
 
 ```
