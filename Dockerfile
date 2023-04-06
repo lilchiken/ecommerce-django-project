@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM python:3.8 AS builder
+FROM python:3.8
 EXPOSE 8000
 WORKDIR /app 
 COPY requirements.txt /app
