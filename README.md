@@ -9,7 +9,7 @@
 - No users, only sessions
 - Caching with [redis](https://redis.io)
 - Simple API for checking commerce stats
-- Styling with Bootstrap v5 (static files are in other branch)
+- Styling with Bootstrap v5 (static files are in branch "with_static_files")
 - Testing with Pytest
 - Swagger UI for API documentation and testing
 - Easy to manage admin panel
@@ -28,7 +28,7 @@
 ----
 
 ## 📖 Installation
-someMarket can be installed via pip. To start, clone the repo to your local computer and change into the proper directory.  
+someMarket can be installed via pip and Docker. To start, clone the repo to your local computer and change into the proper directory.  
 Remember, static files are in the branch 'with_static_files'. If you want to use it, just pull this branch to your local machine.  
 !!! Before start project you need to install Redis, see how you can do it [here](https://redis.io/docs/getting-started/) !!! (or disable caching in project)
 
@@ -64,6 +64,22 @@ $ source .venv/bin/activate
 # Load the site at http://127.0.0.1:8000
 ```
 
+
+### Docker
+
+You can see structure docker project in branch "docker".  
+Staticfiles are deployed.  
+Admin already created.  
+Username: admin  
+Password: admin
+
+```
+$ docker pull lilchiken/ecommerce-django-project
+$ docker run -d --name ecommerce-django-project -p 80:80 lilchiken/ecommerce-django-project
+# Load the site at http://localhost:80
+```
+
+
 ----
 
 ## ER diagram
@@ -77,6 +93,7 @@ $ source .venv/bin/activate
 - Develop payment methods that you want to see in the project.
 - Add [gunicorn](https://pypi.org/project/gunicorn/) or other web server before production.
 - Configure permissions in API viewset.
+- Play with site on Docker and feedback me. :)
 - Make the [admin more secure](https://opensource.com/article/18/1/10-tips-making-django-admin-more-secure).
 
 ----
