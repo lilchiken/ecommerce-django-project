@@ -6,7 +6,7 @@
 ## 🚀 Features
 
 - Django 4.1 & Python 3.8
-- No users, only sessions
+- No users, only sessions !
 - Caching with [redis](https://redis.io)
 - Simple API for checking commerce stats
 - Styling with Bootstrap v5 (static files are in branch "with_static_files")
